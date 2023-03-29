@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:vitrine_virtual/home/presentation/pages/home_detail_product_page.dart';
 
 import '../../../core/fakes/products.dart';
 import '../widgets/product_display_card_widget.dart';
@@ -27,10 +29,13 @@ class HomePage extends StatelessWidget {
               ),
               shrinkWrap: true,
               itemCount: fakeProduct.length,
-              itemBuilder: (context, index) => ProductDisplayCardWidget(
-                nameProduct: fakeProduct[index]['name']!,
-                priceProduct: fakeProduct[index]['price']!,
-                urlImage: fakeProduct[index]['url']!,
+              itemBuilder: (context, index) => InkWell(
+                onTap: () => Get.to(() => const HomeDetailProductPage()),
+                child: ProductDisplayCardWidget(
+                  nameProduct: fakeProduct[index]['name']!,
+                  priceProduct: fakeProduct[index]['price']!,
+                  urlImage: fakeProduct[index]['url']!,
+                ),
               ),
             ),
           ),

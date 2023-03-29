@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:vitrine_virtual/home/presentation/pages/home_page.dart';
 
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({super.key});
@@ -31,6 +33,7 @@ class HeaderWidget extends StatelessWidget {
           Image.asset('assets/images/logo.png'),
           Row(
             children: [
+              TextButton(onPressed: () => Get.off(const HomePage()), child: const Text('Home')),
               TextButton(onPressed: () {}, child: const Text('Quem Somos')),
               TextButton(onPressed: () {}, child: const Text('Contatos')),
             ],

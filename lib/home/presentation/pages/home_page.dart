@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/fakes/products.dart';
 import '../widgets/product_display_card_widget.dart';
+import '../widgets/footer_widget.dart';
+import '../widgets/header_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -11,40 +13,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         body: SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            width: double.infinity,
-            height: 120,
-            decoration: BoxDecoration(
-              color: Colors.orange,
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 3,
-                  blurRadius: 2,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset('assets/images/logo.png'),
-                Row(
-                  children: [
-                    TextButton(onPressed: () {}, child: const Text('Quem Somos')),
-                    TextButton(onPressed: () {}, child: const Text('Contatos')),
-                  ],
-                ),
-              ],
-            ),
-          ),
+          const HeaderWidget(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
             child: GridView.builder(
@@ -62,7 +33,8 @@ class HomePage extends StatelessWidget {
                 urlImage: fakeProduct[index]['url']!,
               ),
             ),
-          )
+          ),
+          const FooterWidget()
         ],
       ),
     ));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vitrine_virtual/core/configs/route_config.dart';
 import 'package:vitrine_virtual/home/presentation/pages/home_page.dart';
 
 class HeaderWidget extends StatelessWidget {
@@ -33,7 +34,8 @@ class HeaderWidget extends StatelessWidget {
           Image.asset('assets/images/logo.png'),
           Row(
             children: [
-              TextButton(onPressed: () => Get.off(const HomePage()), child: const Text('Home')),
+              TextButton(onPressed: () => Get.offNamed(RouteConfig.home), child: const Text('Home')),
+              TextButton(onPressed: () => Get.offNamed(RouteConfig.login), child: const Text('Login')),
               TextButton(onPressed: () {}, child: const Text('Quem Somos')),
               TextButton(onPressed: () {}, child: const Text('Contatos')),
             ],

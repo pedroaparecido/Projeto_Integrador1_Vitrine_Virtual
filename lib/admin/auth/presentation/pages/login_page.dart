@@ -1,116 +1,106 @@
 import 'package:flutter/material.dart';
-
-//import '../../../core/fakes/products.dart';
-//import '../widgets/product_display_card_widget.dart';
+import 'package:get/get.dart';
+import 'package:vitrine_virtual/core/configs/route_config.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
+
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _senhaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            width: double.infinity,
-            height: 120,
-            decoration: BoxDecoration(
-              color: Colors.orange,
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 3,
-                  blurRadius: 2,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset('assets/images/logo.png'),
-                Row(
-                  children: [
-                    TextButton(onPressed: () {}, child: const Text('Quem Somos')),
-                    TextButton(onPressed: () {}, child: const Text('Contatos')),
-                  ],
-                ),
-              ],
+      backgroundColor: Colors.grey,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            width: 500,
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Image.asset(
+                    'assets/images/logo.png',
+                    height: 200,
+                    width: 200,
+                  ),
+                  const SizedBox(height: 35),
+                  TextFormField(
+                    controller: _emailController,
+                    decoration: const InputDecoration(
+                      label: Text('Usuário *'),
+                      hintText: 'nome@email.com',
+                      icon: Icon(Icons.person),
+                    ),
+                    validator: (email) {
+                      if (email == null || email.isEmpty) {
+                        return 'Digite seu usuário';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  PasswordFormFieldWidget(senhaController: _senhaController),
+                  const SizedBox(height: 25),
+                  ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          Get.offNamed(RouteConfig.home);
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black12,
+                      ),
+                      child: const Text('Login'))
+                ],
+              ),
             ),
           ),
-          Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: 500.0,
-                width: 500.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: Colors.grey,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 2.0,
-                      offset: Offset(2.0, 2.0),
-                    ),
-                  ],
-                ),
-                child: Center(
-                  //child: Expanded(
-                  child: Column(
-                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Row(
-                          children: [
-                            Text('Login'),
-                            Text('Senha'),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 100.0,
-                        child: Row(
-                          children: [
-                            Flexible(
-                              child: TextField(
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                  labelText: 'Login',
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 100.0,
-                        //Expanded(
-                        child: Row(
-                          children: [
-                            Flexible(
-                              child: TextField(
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                  labelText: 'Senha',
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )),
-        ],
+        ),
       ),
-    ));
+    );
+  }
+}
+
+class PasswordFormFieldWidget extends StatefulWidget {
+  const PasswordFormFieldWidget({
+    super.key,
+    required TextEditingController senhaController,
+  }) : _senhaController = senhaController;
+
+  final TextEditingController _senhaController;
+
+  @override
+  State<PasswordFormFieldWidget> createState() => _PasswordFormFieldWidgetState();
+}
+
+class _PasswordFormFieldWidgetState extends State<PasswordFormFieldWidget> {
+  bool isVisible = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: widget._senhaController,
+      strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
+      decoration: InputDecoration(
+        labelText: 'Senha',
+        icon: const Icon(Icons.lock),
+        suffixIcon: IconButton(
+          icon: isVisible ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
+          onPressed: () => setState(() => isVisible = !isVisible),
+        ),
+      ),
+      obscureText: isVisible ? true : false,
+      validator: (senha) {
+        if (senha == null || senha.isEmpty) {
+          return 'Digite sua senha';
+        }
+        return null;
+      },
+    );
   }
 }

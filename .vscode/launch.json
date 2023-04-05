@@ -7,7 +7,8 @@
         {
             "name": "vitrine_virtual",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "toolArgs": ["--web-port=49430"]
         },
         {
             "name": "vitrine_virtual (profile mode)",

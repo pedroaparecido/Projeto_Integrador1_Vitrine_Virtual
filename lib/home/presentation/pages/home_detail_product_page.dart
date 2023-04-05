@@ -13,30 +13,43 @@ class HomeDetailProductPage extends StatelessWidget {
       child: Column(
         children: [
           const HeaderWidget(),
+          Text('Nome Produto',
+          style: TextStyle(
+            fontSize:20,
+            fontWeight: FontWeight.bold,
+          ),),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 50),
-            child: Container(
-                height: 500.0,
-                width: 500.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: Colors.grey,
-                  boxShadow: const [
-                    BoxShadow(color: Colors.grey, blurRadius: 2.0, offset: Offset(2.0, 2.0)),
-                  ],
-                ),
+            child: Card(
+              elevation: 5,
+                //height: 700.0,
+                //width: 1000.0,
+                //decoration: BoxDecoration(
+                  //borderRadius: BorderRadius.circular(10.0),
+                  //boxShadow: const [
+                    //BoxShadow(blurRadius: 15.0, offset: Offset(5.0, 5.0)),
+                  //],
+                //),
                 child: Row(
                   children: [
                     Image.asset(
-                      'assets/images/logo.png',
-                      height: 300.0,
-                      width: 300.0,
+                      'assets/images/bud.jpg',
+                      height: 500.0,
+                      width: 600.0,
                     ),
-                    Column(
+                    Flexible(
+                      child: Column(
                       children: const [
-                        Text('Descrição Produto'),
-                        Text('Preço PRoduto'),
+                        Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ullamcorper efficitur iaculis. Curabitur pellentesque eleifend orci eu sagittis. Morbi eleifend nunc et erat fermentum, quis pharetra felis dictum.', style: TextStyle(
+                          fontSize:20,
+                          fontWeight: FontWeight.w600,
+                        ),),
+                        Text('R\$8,90', style: TextStyle(
+                          fontSize:80,
+                          fontWeight: FontWeight.bold,
+                        ),),
                       ],
+                    )
                     )
                   ],
                 )),

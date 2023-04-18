@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 
-class ProductDisplayCardWidget extends StatelessWidget {
-  const ProductDisplayCardWidget({
+class AllCategoryDisplayCardWidget extends StatelessWidget {
+  const AllCategoryDisplayCardWidget({
     super.key,
     required this.urlImage,
     required this.nameProduct,
-    required this.priceProduct,
   });
 
   final String urlImage;
   final String nameProduct;
-  final String priceProduct;
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +29,7 @@ class ProductDisplayCardWidget extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            Text(
-              priceProduct,
-              style: const TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
+            ],
         ),
       ),
     );

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vitrine_virtual/admin/auth/presentation/pages/login_page.dart';
-import 'package:vitrine_virtual/admin/register_product_page.dart';
-import 'package:vitrine_virtual/home/presentation/pages/home_products.dart';
+import 'package:vitrine_virtual/home/presentation/pages/home_contact_page.dart';
+import 'package:vitrine_virtual/home/presentation/pages/home_about_page.dart';
+
 
 import 'admin/register_category_page.dart';
 import 'admin/register_company_page.dart';
@@ -30,6 +31,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: RouteConfig.home, page: () => const HomePage()),
         GetPage(name: RouteConfig.login, page: () => LoginPage()),
         GetPage(name: RouteConfig.homeProductDetail, page: () => const HomeDetailProductPage()),
+        GetPage(name: RouteConfig.about, page: () => const HomeAboutPage()),
+        GetPage(name: RouteConfig.contact, page: () => const HomeContactPage()),
         GetPage(name: RouteConfig.companyPage, page: () => const RegisterCompanyPage()),
         GetPage(name: RouteConfig.registerProductPage, page: () => RegisterProductPage()),
         GetPage(name: RouteConfig.registerCategoryPage, page: () => const RegisterCategoryPage()),

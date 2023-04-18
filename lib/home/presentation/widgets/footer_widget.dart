@@ -19,7 +19,7 @@ class FooterWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(onPressed: () {}, icon: const Icon(FontAwesomeIcons.squareFacebook, color: Colors.white)),
-                  IconButton(onPressed: () {}, icon: const Icon(FontAwesomeIcons.twitter, color: Colors.white)),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.email_outlined, color: Colors.white)),
                   IconButton(onPressed: () {}, icon: const Icon(FontAwesomeIcons.instagram, color: Colors.white)),
                   IconButton(onPressed: () {}, icon: const Icon(FontAwesomeIcons.whatsapp, color: Colors.white)),
                 ],

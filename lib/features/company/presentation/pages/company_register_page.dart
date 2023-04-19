@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 
-import 'package:vitrine_virtual/home/presentation/widgets/footer_widget.dart';
-import 'package:vitrine_virtual/home/presentation/widgets/header_widget.dart';
+import '../../../../core/widgets/footer_widget.dart';
+import '../../../../core/widgets/header_widget.dart';
+import '../../../admin/presentation/widgets/admin_menu_drawer_widget.dart';
 
-class RegisterCompanyPage extends StatelessWidget {
-  const RegisterCompanyPage({super.key});
+class CompanyRegisterPage extends StatelessWidget {
+  const CompanyRegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Cadastro - Empresa'),
+      ),
+      drawer: const AdminMenuDrawerWidget(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const HeaderWidget(),
             const SizedBox(height: 15),
             SizedBox(
               width: 800,

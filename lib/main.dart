@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vitrine_virtual/admin/auth/presentation/pages/login_page.dart';
-import 'package:vitrine_virtual/home/presentation/pages/home_contact_page.dart';
-import 'package:vitrine_virtual/home/presentation/pages/home_about_page.dart';
+import 'package:vitrine_virtual/features/admin/presentation/pages/admin_page.dart';
 
-
-import 'admin/register_category_page.dart';
-import 'admin/register_company_page.dart';
+import 'features/auth/presentation/pages/login_page.dart';
+import 'features/product/presentation/pages/product_category_page.dart';
+import 'features/product/presentation/pages/product_register_page.dart';
+import 'features/public/presentation/pages/contact_page.dart';
+import 'features/public/presentation/pages/about_page.dart';
+import 'features/company/presentation/pages/company_register_page.dart';
 import 'core/configs/route_config.dart';
-import 'home/presentation/pages/home_category.dart';
-import 'home/presentation/pages/home_detail_product_page.dart';
-import 'home/presentation/pages/home_page.dart';
+import 'features/product/presentation/pages/product_detail_page.dart';
+import 'features/public/presentation/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,18 +26,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: RouteConfig.registerProductPage,
+      initialRoute: RouteConfig.home,
+      debugShowCheckedModeBanner: false,
       getPages: [
         GetPage(name: RouteConfig.home, page: () => const HomePage()),
+        GetPage(name: RouteConfig.about, page: () => const AboutPage()),
+        GetPage(name: RouteConfig.contact, page: () => const ContactPage()),
+        GetPage(name: RouteConfig.companyRegister, page: () => const CompanyRegisterPage()),
+        GetPage(name: RouteConfig.productDetail, page: () => const ProductDetailPage()),
+        GetPage(name: RouteConfig.producRegister, page: () => const ProductRegisterPage()),
+        GetPage(name: RouteConfig.productCategory, page: () => const ProductCategoryPage()),
+        GetPage(name: RouteConfig.adminPage, page: () => const Adminpage()),
         GetPage(name: RouteConfig.login, page: () => LoginPage()),
-        GetPage(name: RouteConfig.homeProductDetail, page: () => const HomeDetailProductPage()),
-        GetPage(name: RouteConfig.about, page: () => const HomeAboutPage()),
-        GetPage(name: RouteConfig.contact, page: () => const HomeContactPage()),
-        GetPage(name: RouteConfig.companyPage, page: () => const RegisterCompanyPage()),
-        GetPage(name: RouteConfig.registerProductPage, page: () => RegisterProductPage()),
-        GetPage(name: RouteConfig.registerCategoryPage, page: () => const RegisterCategoryPage()),
-        GetPage(name: RouteConfig.homeProducts, page: () => const HomeProducts()),
-        GetPage(name: RouteConfig.homeCategories, page: () => const HomeCategories()),
       ],
     );
   }

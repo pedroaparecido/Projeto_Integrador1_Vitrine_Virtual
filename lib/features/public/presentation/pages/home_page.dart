@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/configs/route_config.dart';
-import '../../../core/fakes/products.dart';
-
+import '../../../../core/configs/route_config.dart';
+import '../../../../core/fakes/products.dart';
+import '../../../../core/widgets/footer_widget.dart';
+import '../../../../core/widgets/header_widget.dart';
 import '../widgets/banner_widget.dart';
-import '../widgets/category_buttons_widget.dart';
-import '../widgets/product_display_card_widget.dart';
-import '../widgets/footer_widget.dart';
-import '../widgets/header_widget.dart';
+import '../../../product/presentation/widgets/product_category_buttons_widget.dart';
+import '../../../product/presentation/widgets/product_display_card_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -22,7 +21,7 @@ class HomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const HeaderWidget(),
-          const CategoryButtonsWidget(),
+          const ProductCategoryButtonsWidget(),
           const BannerWidget(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
@@ -36,7 +35,7 @@ class HomePage extends StatelessWidget {
               shrinkWrap: true,
               itemCount: fakeProduct.length,
               itemBuilder: (context, index) => InkWell(
-                onTap: () => Get.toNamed(RouteConfig.homeProductDetail),
+                onTap: () => Get.toNamed(RouteConfig.productDetail),
                 child: ProductDisplayCardWidget(
                   nameProduct: fakeProduct[index]['name']!,
                   priceProduct: fakeProduct[index]['price']!,

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../../core/widgets/footer_widget.dart';
+import '../../../../core/widgets/header_widget.dart';
 import '../widgets/contact_form_widget.dart';
-import '../widgets/footer_widget.dart';
-import '../widgets/header_widget.dart';
 
-class HomeContactPage extends StatelessWidget {
-  const HomeContactPage({super.key});
+class ContactPage extends StatelessWidget {
+  const ContactPage({super.key});
 
   @override
   Widget build(BuildContext context) {

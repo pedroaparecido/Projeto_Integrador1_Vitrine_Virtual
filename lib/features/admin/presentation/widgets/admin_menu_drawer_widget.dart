@@ -1,0 +1,54 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../../core/configs/route_config.dart';
+
+class AdminMenuDrawerWidget extends StatelessWidget {
+  const AdminMenuDrawerWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          const DrawerHeader(
+            decoration: BoxDecoration(
+              color: Colors.blue,
+            ),
+            child: Text(
+              'Menu',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+              ),
+            ),
+          ),
+          ListTile(
+              leading: const Icon(Icons.abc),
+              title: const Text('Empresa'),
+              onTap: () => Get.offNamed(RouteConfig.companyRegister)),
+          ListTile(
+              leading: const Icon(Icons.abc),
+              title: const Text('Produto'),
+              onTap: () => Get.offNamed(RouteConfig.producRegister)),
+          ListTile(
+              leading: const Icon(Icons.abc),
+              title: const Text('Categoria'),
+              onTap: () => Get.offNamed(RouteConfig.productCategory)),
+          ListTile(
+            leading: const Icon(Icons.abc),
+            title: const Text('Banner'),
+            // onTap: () => Get.offNamed(RouteConfig.productPage),
+          ),
+          ListTile(
+              leading: const Icon(Icons.output_rounded),
+              title: const Text('Sair'),
+              onTap: () => Get.offNamed(RouteConfig.home)),
+        ],
+      ),
+    );
+  }
+}

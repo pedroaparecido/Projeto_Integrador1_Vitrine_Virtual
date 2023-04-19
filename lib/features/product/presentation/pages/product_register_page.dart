@@ -1,14 +1,14 @@
-import 'dart:html';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'package:vitrine_virtual/home/presentation/widgets/footer_widget.dart';
-import 'package:vitrine_virtual/home/presentation/widgets/header_widget.dart';
+import '../../../../core/widgets/footer_widget.dart';
+import '../../../../core/widgets/header_widget.dart';
+import '../../../admin/presentation/widgets/admin_menu_drawer_widget.dart';
 
-class RegisterProductPage extends StatefulWidget {
-  const RegisterProductPage({Key? key}) : super(key: key);
+class ProductRegisterPage extends StatefulWidget {
+  const ProductRegisterPage({Key? key}) : super(key: key);
 
   @override
   MyAppState createState() => MyAppState();
@@ -16,7 +16,7 @@ class RegisterProductPage extends StatefulWidget {
 
 final picker = ImagePicker();
 
-class MyAppState extends State<RegisterProductPage> {
+class MyAppState extends State<ProductRegisterPage> {
   Future<XFile?> chooseImage(ImageSource source) async {
     final res = picker.pickImage(source: ImageSource.gallery);
     return res;
@@ -27,11 +27,14 @@ class MyAppState extends State<RegisterProductPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Cadastro - Produto'),
+      ),
+      drawer: const AdminMenuDrawerWidget(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const HeaderWidget(),
             const SizedBox(height: 15),
             SizedBox(
               width: 800,

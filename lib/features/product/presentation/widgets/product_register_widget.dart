@@ -1,14 +1,11 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../../core/widgets/footer_widget.dart';
-import '../../../../core/widgets/header_widget.dart';
-import '../../../admin/presentation/widgets/admin_menu_drawer_widget.dart';
-
-class ProductRegisterPage extends StatefulWidget {
-  const ProductRegisterPage({Key? key}) : super(key: key);
+class ProductRegisterWidget extends StatefulWidget {
+  const ProductRegisterWidget({Key? key}) : super(key: key);
 
   @override
   MyAppState createState() => MyAppState();
@@ -16,7 +13,7 @@ class ProductRegisterPage extends StatefulWidget {
 
 final picker = ImagePicker();
 
-class MyAppState extends State<ProductRegisterPage> {
+class MyAppState extends State<ProductRegisterWidget> {
   Future<XFile?> chooseImage(ImageSource source) async {
     final res = picker.pickImage(source: ImageSource.gallery);
     return res;
@@ -26,24 +23,20 @@ class MyAppState extends State<ProductRegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Cadastro - Produto'),
-      ),
-      drawer: const AdminMenuDrawerWidget(),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 15),
-            SizedBox(
-              width: 800,
-              child: Card(
-                elevation: 5,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-                  child: Form(
-                      child: Column(
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: 15),
+          SizedBox(
+            width: 800,
+            child: Card(
+              elevation: 5,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                child: Form(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       const Text(
@@ -53,7 +46,7 @@ class MyAppState extends State<ProductRegisterPage> {
                       imageFile == null
                           ? Image.asset(
                               'assets/images/no-img.jpg',
-                              height: 500.0,
+                              height: 250.0,
                             )
                           : Image.memory(imageFile!),
                       const SizedBox(height: 10),
@@ -66,7 +59,7 @@ class MyAppState extends State<ProductRegisterPage> {
                                 setState(() {});
                               },
                               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                              child: const Text('Deletar'),
+                              child: const Text('Remover'),
                             ),
                           ),
                           const SizedBox(width: 10),
@@ -81,12 +74,11 @@ class MyAppState extends State<ProductRegisterPage> {
 
                                 setState(() {});
                               },
-                              child: const Text('Visualizar'),
+                              child: const Text('Adicionar Imagem'),
                             ),
                           ),
                         ],
                       ),
-                      const Divider(),
                       const SizedBox(height: 15),
                       TextFormField(
                         strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
@@ -107,22 +99,38 @@ class MyAppState extends State<ProductRegisterPage> {
                         ),
                       ),
                       const SizedBox(height: 25),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
-                        onPressed: () {},
-                        child: const Text(
-                          'Cadastrar Produto',
-                          style: TextStyle(color: Colors.black),
-                        ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                              onPressed: Get.back,
+                              child: const Text(
+                                'Cancelar',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
+                              onPressed: () {},
+                              child: const Text(
+                                'Cadastrar',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
-                  )),
+                  ),
                 ),
               ),
             ),
-            const FooterWidget(),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

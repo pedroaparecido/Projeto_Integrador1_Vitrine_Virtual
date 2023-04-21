@@ -143,6 +143,37 @@ class CompanyRegisterPage extends StatelessWidget {
                           labelText: 'WhatsApp',
                         ),
                       ),
+                      TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        maxLines: 3,
+                        strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
+                        decoration: const InputDecoration(
+                          labelText: 'Missão',
+                        ),
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        maxLines: 3,
+                        strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
+                        decoration: const InputDecoration(
+                          labelText: 'Visão',
+                        ),
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        maxLines: 3,
+                        strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
+                        decoration: const InputDecoration(
+                          labelText: 'Valores',
+                        ),
+                      ),
+                      TextFormField(
+                        strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
+                        decoration: const InputDecoration(
+                          labelText: 'Senha de Acesso',
+                        ),
+                        obscureText: true,
+                      ),
                       const SizedBox(height: 25),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),

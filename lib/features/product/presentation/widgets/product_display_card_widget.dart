@@ -14,7 +14,9 @@ class ProductDisplayCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return SizedBox(
+      height: 280,
+      width: 250,
       child: Card(
         elevation: 6,
         child: Column(

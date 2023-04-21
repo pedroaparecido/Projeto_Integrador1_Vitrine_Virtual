@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../../../../core/configs/route_config.dart';
+import '../helpers/helper_menu_list_buttons.dart';
 
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({super.key});
@@ -28,19 +27,20 @@ class HeaderWidget extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Image.asset('assets/images/logo.png'),
-          Row(
-            children: [
-              TextButton(onPressed: () => Get.offNamed(RouteConfig.home), child: const Text('Home')),
-              TextButton(onPressed: () => Get.offNamed(RouteConfig.about), child: const Text('Quem Somos')),
-              TextButton(onPressed: () => Get.offNamed(RouteConfig.contact), child: const Text('Contatos')),
-              TextButton(onPressed: () => Get.offNamed(RouteConfig.login), child: const Text('Admin')),
-            ],
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image.asset('assets/images/logo.png'),
+            const Spacer(),
+            MediaQuery.of(context).size.width < 450
+                ? IconButton(onPressed: () => Scaffold.of(context).openDrawer(), icon: const Icon(Icons.menu, size: 40))
+                : Row(
+                    children: menuListButtons,
+                  ),
+          ],
+        ),
       ),
     );
   }

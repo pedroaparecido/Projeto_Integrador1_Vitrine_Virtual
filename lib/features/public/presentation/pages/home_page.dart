@@ -8,45 +8,62 @@ import '../../../../core/widgets/header_widget.dart';
 import '../widgets/banner_widget.dart';
 import '../../../product/presentation/widgets/product_category_buttons_widget.dart';
 import '../../../product/presentation/widgets/product_display_card_widget.dart';
+import '../widgets/public_menu_drawer_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    double sizeWidth = MediaQuery.of(context).size.width;
+    print(sizeWidth);
     return Scaffold(
+        drawer: const PublicMenuDrawerWidget(),
         body: SingleChildScrollView(
-      primary: false,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const HeaderWidget(),
-          const ProductCategoryButtonsWidget(),
-          const BannerWidget(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 300,
-                childAspectRatio: 1,
-                // crossAxisSpacing: 20,
-                // mainAxisSpacing: 20,
-              ),
-              shrinkWrap: true,
-              itemCount: fakeProduct.length,
-              itemBuilder: (context, index) => InkWell(
-                onTap: () => Get.toNamed(RouteConfig.productDetail),
-                child: ProductDisplayCardWidget(
-                  nameProduct: fakeProduct[index]['name']!,
-                  priceProduct: fakeProduct[index]['price']!,
-                  urlImage: fakeProduct[index]['url']!,
+          primary: false,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const HeaderWidget(),
+              const ProductCategoryButtonsWidget(),
+              const BannerWidget(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+                child: Card(
+                  elevation: 8,
+                  child: SizedBox(
+                    width: 1001,
+                    child: GridView.count(
+                      shrinkWrap: true,
+                      crossAxisCount: sizeWidth < 500
+                          ? 1
+                          : sizeWidth < 900
+                              ? 2
+                              : sizeWidth < 1200
+                                  ? 3
+                                  : 4,
+                      mainAxisSpacing: 25,
+                      children: [
+                        ...fakeProduct.map(
+                          (e) => Center(
+                            child: InkWell(
+                              onTap: () => Get.toNamed(RouteConfig.productDetail),
+                              child: ProductDisplayCardWidget(
+                                nameProduct: e['name']!,
+                                priceProduct: e['price']!,
+                                urlImage: e['url']!,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
+              const FooterWidget()
+            ],
           ),
-          const FooterWidget()
-        ],
-      ),
-    ));
+        ));
   }
 }

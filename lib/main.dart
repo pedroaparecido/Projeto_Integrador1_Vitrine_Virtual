@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vitrine_virtual/features/admin/presentation/pages/admin_page.dart';
+import 'package:vitrine_virtual/features/images/presentation/pages/images_page.dart';
 
 import 'features/auth/presentation/pages/login_page.dart';
 import 'features/product/presentation/pages/product_category_page.dart';
-import 'features/product/presentation/pages/product_register_page.dart';
+import 'features/product/presentation/pages/product_page.dart';
 import 'features/public/presentation/pages/contact_page.dart';
 import 'features/public/presentation/pages/about_page.dart';
 import 'features/company/presentation/pages/company_register_page.dart';
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: RouteConfig.contact, page: () => const ContactPage()),
         GetPage(name: RouteConfig.companyRegister, page: () => const CompanyRegisterPage()),
         GetPage(name: RouteConfig.productDetail, page: () => const ProductDetailPage()),
-        GetPage(name: RouteConfig.producRegister, page: () => const ProductRegisterPage()),
+        GetPage(name: RouteConfig.product, page: () => const ProductPage()),
+        GetPage(name: RouteConfig.images, page: () => const ImagesPage()),
         GetPage(name: RouteConfig.productCategory, page: () => const ProductCategoryPage()),
         GetPage(name: RouteConfig.adminPage, page: () => const Adminpage()),
         GetPage(name: RouteConfig.login, page: () => LoginPage()),

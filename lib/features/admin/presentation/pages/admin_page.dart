@@ -14,7 +14,10 @@ class Adminpage extends StatelessWidget {
         title: const Text('Administração'),
       ),
       drawer: const AdminMenuDrawerWidget(),
-      body: Container(),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Center(child: Image.asset('assets/images/logo.png')),
+      ),
     );
   }
 }

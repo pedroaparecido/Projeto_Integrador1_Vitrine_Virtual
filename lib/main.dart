@@ -13,7 +13,10 @@ import 'core/configs/route_config.dart';
 import 'features/product/presentation/pages/product_detail_page.dart';
 import 'features/public/presentation/pages/home_page.dart';
 
+import 'service_locator.dart' as service_locator;
+
 void main() {
+  service_locator.init();
   runApp(const MyApp());
 }
 
@@ -33,7 +36,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: RouteConfig.home, page: () => const HomePage()),
         GetPage(name: RouteConfig.about, page: () => const AboutPage()),
         GetPage(name: RouteConfig.contact, page: () => const ContactPage()),
-        GetPage(name: RouteConfig.companyRegister, page: () => const CompanyRegisterPage()),
+        GetPage(name: RouteConfig.companyRegister, page: () => CompanyRegisterPage()),
         GetPage(name: RouteConfig.productDetail, page: () => const ProductDetailPage()),
         GetPage(name: RouteConfig.product, page: () => const ProductPage()),
         GetPage(name: RouteConfig.images, page: () => const ImagesPage()),

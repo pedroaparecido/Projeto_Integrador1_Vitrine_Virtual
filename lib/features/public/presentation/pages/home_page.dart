@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/configs/route_config.dart';
 import '../../../../core/fakes/products.dart';
 import '../../../../core/widgets/footer_widget.dart';
 import '../../../../core/widgets/header_widget.dart';
 import '../widgets/banner_widget.dart';
 import '../../../product/presentation/widgets/product_category_buttons_widget.dart';
 import '../../../product/presentation/widgets/product_display_card_widget.dart';
+import '../widgets/product_detail_widget.dart';
 import '../widgets/public_menu_drawer_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -47,11 +47,14 @@ class HomePage extends StatelessWidget {
                         ...fakeProduct.map(
                           (e) => Center(
                             child: InkWell(
-                              onTap: () => Get.toNamed(RouteConfig.productDetail),
                               child: ProductDisplayCardWidget(
                                 nameProduct: e['name']!,
                                 priceProduct: e['price']!,
                                 urlImage: e['url']!,
+                              ),
+                              onTap: () => Get.dialog(
+                                const Center(child: ProductDetailWidget()),
+                                barrierDismissible: true,
                               ),
                             ),
                           ),

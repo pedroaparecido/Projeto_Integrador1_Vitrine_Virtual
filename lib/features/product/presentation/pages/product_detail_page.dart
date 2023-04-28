@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/widgets/footer_widget.dart';
-import '../../../../core/widgets/header_widget.dart';
+//import '../../../../core/widgets/footer_widget.dart';
+//import '../../../../core/widgets/header_widget.dart';
 
 class ProductDetailPage extends StatelessWidget {
   const ProductDetailPage({super.key});
@@ -12,7 +12,7 @@ class ProductDetailPage extends StatelessWidget {
         body: SingleChildScrollView(
       child: Column(
         children: [
-          const HeaderWidget(),
+          //const HeaderWidget(),
           const Text(
             'Nome Produto',
             style: TextStyle(
@@ -61,7 +61,7 @@ class ProductDetailPage extends StatelessWidget {
                   ],
                 )),
           ),
-          const FooterWidget(),
+          // const FooterWidget(),
         ],
       ),
     ));

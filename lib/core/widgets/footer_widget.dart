@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../helpers/laucher_helper.dart';
+
 class FooterWidget extends StatelessWidget {
   const FooterWidget({super.key});
 
@@ -18,10 +20,23 @@ class FooterWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(onPressed: () {}, icon: const Icon(FontAwesomeIcons.squareFacebook, color: Colors.white)),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.email_outlined, color: Colors.white)),
-                  IconButton(onPressed: () {}, icon: const Icon(FontAwesomeIcons.instagram, color: Colors.white)),
-                  IconButton(onPressed: () {}, icon: const Icon(FontAwesomeIcons.whatsapp, color: Colors.white)),
+                  IconButton(
+                    onPressed: () => LauncherHelper.url('http://facebook.com.br'),
+                    icon: const Icon(FontAwesomeIcons.squareFacebook, color: Colors.white),
+                  ),
+                  IconButton(
+                    onPressed: () => LauncherHelper.url('mailto:smith@example.org?subject=News&body=New%20plugin'),
+                    icon: const Icon(Icons.email_outlined, color: Colors.white),
+                  ),
+                  IconButton(
+                    onPressed: () => LauncherHelper.url('http://instagram.com'),
+                    icon: const Icon(FontAwesomeIcons.instagram, color: Colors.white),
+                  ),
+                  IconButton(
+                    onPressed: () =>
+                        LauncherHelper.url('https://wa.me/5517992688736?text=Tenho%20interesse%20em%20comprar'),
+                    icon: const Icon(FontAwesomeIcons.whatsapp, color: Colors.white),
+                  ),
                 ],
               ),
             ),

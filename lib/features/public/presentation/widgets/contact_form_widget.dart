@@ -68,6 +68,8 @@ class ContactFormWidget extends StatelessWidget {
                           ],
                         ),
                         TextFormField(
+                          keyboardType: TextInputType.multiline,
+                          maxLines: 3,
                           strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
                           decoration: const InputDecoration(
                             labelText: 'Digite sua mensagem:',

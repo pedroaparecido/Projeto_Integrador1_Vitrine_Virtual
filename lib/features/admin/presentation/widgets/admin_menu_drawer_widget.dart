@@ -27,19 +27,19 @@ class AdminMenuDrawerWidget extends StatelessWidget {
             ),
           ),
           ListTile(
-              leading: const Icon(Icons.abc),
+              leading: const Icon(Icons.shopping_bag_outlined),
               title: const Text('Empresa'),
               onTap: () => Get.offNamed(RouteConfig.companyRegister)),
           ListTile(
-              leading: const Icon(Icons.abc),
+              leading: const Icon(Icons.production_quantity_limits_rounded),
               title: const Text('Produto'),
               onTap: () => Get.offNamed(RouteConfig.product)),
           ListTile(
-              leading: const Icon(Icons.abc),
+              leading: const Icon(Icons.category_outlined),
               title: const Text('Categoria'),
               onTap: () => Get.offNamed(RouteConfig.productCategory)),
           ListTile(
-            leading: const Icon(Icons.abc),
+            leading: const Icon(Icons.camera_front),
             title: const Text('Imagens'),
             onTap: () => Get.offNamed(RouteConfig.images),
           ),

@@ -19,12 +19,15 @@ dependencies:
   url_launcher: ^6.1.10
   dartz: ^0.10.1
   get_it: ^7.3.0
+  # location: ^5.0.0
+  # google_maps_flutter: ^0.5.25+1
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  
 
 
 

@@ -40,7 +40,7 @@ class AdminMenuDrawerWidget extends StatelessWidget {
               onTap: () => Get.offNamed(RouteConfig.productCategory)),
           ListTile(
             leading: const Icon(Icons.camera_front),
-            title: const Text('Imagens'),
+            title: const Text('Banners'),
             onTap: () => Get.offNamed(RouteConfig.images),
           ),
           ListTile(

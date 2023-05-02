@@ -21,7 +21,8 @@ class FooterWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    onPressed: () => LauncherHelper.url('http://facebook.com.br'),
+                    onPressed: () =>
+                        LauncherHelper.url('https://www.facebook.com/people/Kako-Serv-Festas/100083009268624/'),
                     icon: const Icon(FontAwesomeIcons.squareFacebook, color: Colors.white),
                   ),
                   IconButton(

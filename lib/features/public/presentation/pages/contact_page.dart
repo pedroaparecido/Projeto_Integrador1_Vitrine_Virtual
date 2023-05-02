@@ -78,7 +78,8 @@ class ContactPage extends StatelessWidget {
                         padding: const EdgeInsets.all(12.0),
                         child: Column(children: [
                           IconButton(
-                              onPressed: () => LauncherHelper.url('http://facebook.com.br'),
+                              onPressed: () => LauncherHelper.url(
+                                  'https://www.facebook.com/people/Kako-Serv-Festas/100083009268624/'),
                               icon: const Icon(FontAwesomeIcons.squareFacebook, color: Colors.blueAccent)),
                           const Text("FACEBOOK", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
                           const Text("kakoServFestas@gmail.com", style: TextStyle(fontSize: 12)),

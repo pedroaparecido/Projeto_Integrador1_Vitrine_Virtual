@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ImagesBannerRegisterWidget extends StatefulWidget {
-  const ImagesBannerRegisterWidget({Key? key}) : super(key: key);
+class BannersRegisterWidget extends StatefulWidget {
+  const BannersRegisterWidget({Key? key}) : super(key: key);
 
   @override
   MyAppState createState() => MyAppState();
@@ -13,7 +13,7 @@ class ImagesBannerRegisterWidget extends StatefulWidget {
 
 final picker = ImagePicker();
 
-class MyAppState extends State<ImagesBannerRegisterWidget> {
+class MyAppState extends State<BannersRegisterWidget> {
   Future<XFile?> chooseImage(ImageSource source) async {
     final res = picker.pickImage(source: ImageSource.gallery);
     return res;

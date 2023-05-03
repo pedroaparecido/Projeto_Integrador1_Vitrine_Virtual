@@ -1,58 +1,30 @@
+import 'package:vitrine_virtual/core/services/graphql_service.dart';
 import 'package:vitrine_virtual/features/company/data/model/company_model.dart';
 
 import '../../domain/entities/company_entity.dart';
+import '../model/company_gql_model.dart';
 
 abstract class CompanyDataSource {
   Future<CompanyEntity> get();
-  Future<CompanyEntity> update({required CompanyEntity product});
-  Future<bool> delete(int id);
+  Future<CompanyEntity> update({required CompanyEntity company});
 }
 
 class CompanyDataSourceImpl implements CompanyDataSource {
+  CompanyDataSourceImpl(this._graphqlService);
+
+  final GraphqlService _graphqlService;
+
   @override
   Future<CompanyEntity> get() async {
-    // imita busca no servidor (webservice/api)
-    await Future.delayed(const Duration(seconds: 5));
-    // serializa dados
-    final company = CompanyModel.fromMap(fakeResponseJson[0]);
+    final res = await _graphqlService.queryGql(query: CompanyGqlModel.get());
 
-    // throw 'ERRRO GERADO';
-    //retorna dados
-    return company;
+    return CompanyModel.fromMap(res['company_by_pk']);
   }
 
   @override
-  Future<CompanyEntity> update({required CompanyEntity product}) {
-    // TODO: implement update
-    throw UnimplementedError();
-  }
+  Future<CompanyEntity> update({required CompanyEntity company}) async {
+    final res = await _graphqlService.mutationGql(mutationQuery: CompanyGqlModel.update(company));
 
-  @override
-  Future<bool> delete(int id) {
-    // TODO: implement delete
-    throw UnimplementedError();
+    return CompanyModel.fromMap(res['update_company_by_pk']);
   }
-
-  final fakeResponseJson = [
-    {
-      'id': 1,
-      'nome_fantasia': 'KAKO SERV FESTA',
-      'razao_social': 'KAKO ENTERPIZEEEEE',
-      'cnpj': '00.000.000/0000-00',
-      'rua': 'SOBE E DESCE NUNCA APARECE',
-      'numero': '171',
-      'cidade': 'CATANDUVA',
-      'cep': '15015-000',
-      'bairro': 'CENTRO',
-      'telefone': '(17) 99999 9999',
-      'email': 'wfwerfw@wefwerf.com',
-      'facebook': 'facebook do kako',
-      'instagram': 'instagram do kako',
-      'whatsapp': '(17) 99999 99999',
-      'missao': 'ergljnewrgkljewn gowe weoijnwergoihnwegoinwe w4ofihn',
-      'visao': 'ergljnewrgkljewn gowe weoijnwergoihnwegoinwe w4ofihn',
-      'valores': 'ergljnewrgkljewn gowe weoijnwergoihnwegoinwe w4ofihn',
-      'senha_acesso': '123456',
-    }
-  ];
 }

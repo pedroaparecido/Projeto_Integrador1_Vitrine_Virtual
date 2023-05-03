@@ -17,7 +17,7 @@ class CompanyEntity {
     required this.missao,
     required this.visao,
     required this.valores,
-    required this.senhaDeAcesso,
+    this.senhaDeAcesso,
   });
 
   int? id;
@@ -37,7 +37,7 @@ class CompanyEntity {
   String missao;
   String visao;
   String valores;
-  String senhaDeAcesso;
+  String? senhaDeAcesso;
 
   @override
   String toString() {

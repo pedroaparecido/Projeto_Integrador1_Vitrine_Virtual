@@ -21,29 +21,27 @@ class CompanyModel extends CompanyEntity {
     required super.missao,
     required super.visao,
     required super.valores,
-    required super.senhaDeAcesso,
   });
 
   factory CompanyModel.fromMap(Map<String, dynamic> map) {
     return CompanyModel(
       id: map['id']?.toInt(),
-      razaoSocial: map['nome_fantasia'] ?? '',
-      nomeFantasia: map['razao_social'] ?? '',
+      razaoSocial: map['legal_name'] ?? '',
+      nomeFantasia: map['trade_name'] ?? '',
       cnpj: map['cnpj'] ?? '',
-      rua: map['rua'] ?? '',
-      numero: map['numero'] ?? '',
-      cidade: map['cidade'] ?? '',
-      cep: map['cep'] ?? '',
-      bairro: map['bairro'] ?? '',
-      telefone: map['telefone'] ?? '',
+      rua: map['street'] ?? '',
+      numero: map['street_number'] ?? '',
+      cidade: map['city'] ?? '',
+      cep: map['postal_code'] ?? '',
+      bairro: map['neighborhood'] ?? '',
+      telefone: map['phone'] ?? '',
       email: map['email'] ?? '',
       facebook: map['facebook'] ?? '',
       instagram: map['instagram'] ?? '',
       whatsapp: map['whatsapp'] ?? '',
-      missao: map['missao'] ?? '',
-      visao: map['visao'] ?? '',
-      valores: map['valores'] ?? '',
-      senhaDeAcesso: map['senha_acesso'] ?? '',
+      missao: map['mission'] ?? '',
+      visao: map['vision'] ?? '',
+      valores: map['values'] ?? '',
     );
   }
 

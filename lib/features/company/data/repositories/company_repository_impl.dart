@@ -11,16 +11,6 @@ class CompanyRepositoryImpl implements CompanyRepository {
   final CompanyDataSource _dataSource;
 
   @override
-  Future<bool> delete(int id) async {
-    try {
-      final res = await _dataSource.delete(id);
-      return res;
-    } catch (err) {
-      return false;
-    }
-  }
-
-  @override
   Future<Either<Exception, CompanyEntity>> get() async {
     try {
       final res = await _dataSource.get();
@@ -33,7 +23,7 @@ class CompanyRepositoryImpl implements CompanyRepository {
   @override
   Future<Either<Exception, CompanyEntity>> update({required CompanyEntity company}) async {
     try {
-      final res = await _dataSource.update(product: company);
+      final res = await _dataSource.update(company: company);
       return Right(res);
     } catch (err) {
       return Left(Exception('Não foi possivel buscar empresa\nError: $err'));

@@ -42,18 +42,18 @@ class CompanyRegisterPage extends StatelessWidget {
                               const Divider(),
                               const SizedBox(height: 15),
                               TextFormField(
+                                controller: _controller.razaoSocialInputController,
                                 strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
                                 decoration: const InputDecoration(
                                   labelText: 'Razão Social',
                                 ),
-                                initialValue: _controller.company?.razaoSocial,
                               ),
                               TextFormField(
+                                controller: _controller.nomeFantasiaInputController,
                                 strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
                                 decoration: const InputDecoration(
                                   labelText: 'Nome Fantasia',
                                 ),
-                                initialValue: _controller.company?.nomeFantasia,
                               ),
                               // TODO: ver se averá tempo para por mascara
                               TextFormField(
@@ -194,12 +194,11 @@ class CompanyRegisterPage extends StatelessWidget {
                                   labelText: 'Senha de Acesso',
                                 ),
                                 obscureText: true,
-                                initialValue: _controller.company?.senhaDeAcesso,
                               ),
                               const SizedBox(height: 25),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
-                                onPressed: () {},
+                                onPressed: _controller.updateCompany,
                                 child: const Text(
                                   'Atualizar',
                                   style: TextStyle(color: Colors.black),

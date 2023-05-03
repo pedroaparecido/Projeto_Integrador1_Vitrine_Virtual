@@ -19,6 +19,7 @@ dependencies:
   url_launcher: ^6.1.10
   dartz: ^0.10.1
   get_it: ^7.3.0
+  hasura_connect: ^4.0.0+4
   # location: ^5.0.0
   # google_maps_flutter: ^0.5.25+1
 

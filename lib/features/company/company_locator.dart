@@ -7,7 +7,7 @@ import 'data/repositories/company_repository_impl.dart';
 class CompanyLocator {
   static void init(GetIt sl) {
     // Data sources
-    sl.registerFactory<CompanyDataSource>(() => CompanyDataSourceImpl());
+    sl.registerFactory<CompanyDataSource>(() => CompanyDataSourceImpl(sl()));
 
     // Repository
     sl.registerFactory<CompanyRepository>(() => CompanyRepositoryImpl(sl()));

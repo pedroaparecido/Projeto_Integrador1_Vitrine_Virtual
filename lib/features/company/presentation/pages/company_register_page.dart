@@ -61,7 +61,7 @@ class CompanyRegisterPage extends StatelessWidget {
                                 decoration: const InputDecoration(
                                   labelText: 'CNPJ',
                                 ),
-                                initialValue: _controller.company?.cnpj,
+                                controller: _controller.cnpjInputController,
                               ),
                               Row(
                                 children: [
@@ -72,7 +72,7 @@ class CompanyRegisterPage extends StatelessWidget {
                                       decoration: const InputDecoration(
                                         labelText: 'Rua',
                                       ),
-                                      initialValue: _controller.company?.rua,
+                                      controller: _controller.ruaInputController,
                                     ),
                                   ),
                                   Expanded(
@@ -82,7 +82,7 @@ class CompanyRegisterPage extends StatelessWidget {
                                       decoration: const InputDecoration(
                                         labelText: 'Número',
                                       ),
-                                      initialValue: _controller.company?.numero,
+                                      controller: _controller.numeroInputController,
                                     ),
                                   ),
                                 ],
@@ -96,7 +96,7 @@ class CompanyRegisterPage extends StatelessWidget {
                                       decoration: const InputDecoration(
                                         labelText: 'Cidade',
                                       ),
-                                      initialValue: _controller.company?.cidade,
+                                      controller: _controller.cidadeInputController,
                                     ),
                                   ),
                                   Expanded(
@@ -106,7 +106,7 @@ class CompanyRegisterPage extends StatelessWidget {
                                       decoration: const InputDecoration(
                                         labelText: 'CEP',
                                       ),
-                                      initialValue: _controller.company?.cep,
+                                      controller: _controller.cepInputController,
                                     ),
                                   ),
                                 ],
@@ -119,7 +119,7 @@ class CompanyRegisterPage extends StatelessWidget {
                                       decoration: const InputDecoration(
                                         labelText: 'Bairro',
                                       ),
-                                      initialValue: _controller.company?.bairro,
+                                      controller: _controller.bairroInputController,
                                     ),
                                   ),
                                   Expanded(
@@ -128,7 +128,7 @@ class CompanyRegisterPage extends StatelessWidget {
                                       decoration: const InputDecoration(
                                         labelText: 'Telefone',
                                       ),
-                                      initialValue: _controller.company?.telefone,
+                                      controller: _controller.telefoneInputController,
                                     ),
                                   ),
                                 ],
@@ -138,28 +138,28 @@ class CompanyRegisterPage extends StatelessWidget {
                                 decoration: const InputDecoration(
                                   labelText: 'E-mail',
                                 ),
-                                initialValue: _controller.company?.email,
+                                controller: _controller.emailInputController,
                               ),
                               TextFormField(
                                 strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
                                 decoration: const InputDecoration(
                                   labelText: 'Facebook',
                                 ),
-                                initialValue: _controller.company?.facebook,
+                                controller: _controller.facebookInputController,
                               ),
                               TextFormField(
                                 strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
                                 decoration: const InputDecoration(
                                   labelText: 'Instagram',
                                 ),
-                                initialValue: _controller.company?.instagram,
+                                controller: _controller.instagramInputController,
                               ),
                               TextFormField(
                                 strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
                                 decoration: const InputDecoration(
                                   labelText: 'WhatsApp',
                                 ),
-                                initialValue: _controller.company?.whatsapp,
+                                controller: _controller.whatsappInputController,
                               ),
                               TextFormField(
                                 keyboardType: TextInputType.multiline,
@@ -168,7 +168,7 @@ class CompanyRegisterPage extends StatelessWidget {
                                 decoration: const InputDecoration(
                                   labelText: 'Missão',
                                 ),
-                                initialValue: _controller.company?.missao,
+                                controller: _controller.missaoInputController,
                               ),
                               TextFormField(
                                 keyboardType: TextInputType.multiline,
@@ -177,7 +177,7 @@ class CompanyRegisterPage extends StatelessWidget {
                                 decoration: const InputDecoration(
                                   labelText: 'Visão',
                                 ),
-                                initialValue: _controller.company?.visao,
+                                controller: _controller.visaoInputController,
                               ),
                               TextFormField(
                                 keyboardType: TextInputType.multiline,
@@ -186,7 +186,7 @@ class CompanyRegisterPage extends StatelessWidget {
                                 decoration: const InputDecoration(
                                   labelText: 'Valores',
                                 ),
-                                initialValue: _controller.company?.valores,
+                                controller: _controller.valoresInputController,
                               ),
                               TextFormField(
                                 strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),

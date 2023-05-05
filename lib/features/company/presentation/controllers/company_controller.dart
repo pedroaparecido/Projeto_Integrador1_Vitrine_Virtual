@@ -13,22 +13,21 @@ class CompanyController extends GetxController {
 
   final razaoSocialInputController = TextEditingController();
   final nomeFantasiaInputController = TextEditingController();
-  //TODO: implementar inputs controllers
-  //  cnpj;
-  //  rua;
-  //  numero;
-  //  cidade;
-  //  cep;
-  //  bairro;
-  //  telefone;
-  //  email;
-  //  facebook;
-  //  instagram;
-  //  whatsapp;
-  //  missao;
-  //  visao;
-  //  valores;
-  //  senhaDeAcesso;
+  final cnpjInputController = TextEditingController();
+  final ruaInputController = TextEditingController();
+  final numeroInputController = TextEditingController();
+  final cidadeInputController = TextEditingController();
+  final cepInputController = TextEditingController();
+  final bairroInputController = TextEditingController();
+  final telefoneInputController = TextEditingController();
+  final emailInputController = TextEditingController();
+  final facebookInputController = TextEditingController();
+  final instagramInputController = TextEditingController();
+  final whatsappInputController = TextEditingController();
+  final missaoInputController = TextEditingController();
+  final visaoInputController = TextEditingController();
+  final valoresInputController = TextEditingController();
+  final senhaDeAcessoInputController = TextEditingController();
 
   CompanyEntity? company;
 
@@ -52,7 +51,21 @@ class CompanyController extends GetxController {
     this.company = company;
     razaoSocialInputController.text = company.razaoSocial;
     nomeFantasiaInputController.text = company.nomeFantasia;
-    //TODO: implementar entrada de dados
+    cnpjInputController.text = company.cnpj;
+    ruaInputController.text = company.rua;
+    numeroInputController.text = company.numero;
+    cidadeInputController.text = company.cidade;
+    cepInputController.text = company.cep;
+    bairroInputController.text = company.bairro;
+    telefoneInputController.text = company.telefone;
+    emailInputController.text = company.email;
+    facebookInputController.text = company.facebook;
+    instagramInputController.text = company.instagram;
+    whatsappInputController.text = company.whatsapp;
+    missaoInputController.text = company.missao;
+    visaoInputController.text = company.visao;
+    valoresInputController.text = company.valores;
+    senhaDeAcessoInputController.text = '';
   }
 
   Future<void> updateCompany() async {
@@ -61,22 +74,21 @@ class CompanyController extends GetxController {
       company: CompanyEntity(
         razaoSocial: razaoSocialInputController.text,
         nomeFantasia: nomeFantasiaInputController.text,
-        //TODO: implementar saida de dados
-        cnpj: 'cnpj',
-        rua: 'rua',
-        numero: 'numero',
-        cidade: 'cidade',
-        cep: 'cep',
-        bairro: 'bairro',
-        telefone: '(17) 99999-5555',
-        email: 'email',
-        facebook: 'facebook',
-        instagram: 'instagram',
-        whatsapp: 'whatsapp',
-        missao: 'missao',
-        visao: 'visao',
-        valores: 'valores',
-        senhaDeAcesso: 'senhaDeAcesso',
+        cnpj: cnpjInputController.text,
+        rua: ruaInputController.text,
+        numero: numeroInputController.text,
+        cidade: cidadeInputController.text,
+        cep: cepInputController.text,
+        bairro: bairroInputController.text,
+        telefone: telefoneInputController.text,
+        email: emailInputController.text,
+        facebook: facebookInputController.text,
+        instagram: instagramInputController.text,
+        whatsapp: whatsappInputController.text,
+        missao: missaoInputController.text,
+        visao: visaoInputController.text,
+        valores: valoresInputController.text,
+        senhaDeAcesso: senhaDeAcessoInputController.text,
       ),
     );
     res.fold(

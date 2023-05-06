@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/widgets/footer_widget.dart';
+import '../controllers/product_controller.dart';
 
 class ProductCategoryRegisterWidget extends StatelessWidget {
-  const ProductCategoryRegisterWidget({super.key});
+  ProductCategoryRegisterWidget({super.key});
+
+  final _controller = Get.find<ProductController>();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    late String name;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
@@ -28,10 +33,14 @@ class ProductCategoryRegisterWidget extends StatelessWidget {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 15),
-                  TextFormField(
-                    strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
-                    decoration: const InputDecoration(
-                      labelText: 'Nome da Categoria',
+                  Form(
+                    key: formKey,
+                    child: TextFormField(
+                      strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
+                      decoration: const InputDecoration(
+                        labelText: 'Nome da Categoria',
+                      ),
+                      onSaved: (value) => name = value!,
                     ),
                   ),
                   const Divider(),
@@ -43,7 +52,14 @@ class ProductCategoryRegisterWidget extends StatelessWidget {
                         child: const Text('Cancelar'),
                       ),
                       const SizedBox(width: 20),
-                      ElevatedButton(onPressed: () {}, child: const Text('Cadastrar')),
+                      ElevatedButton(
+                          onPressed: () async {
+                            if (formKey.currentState!.validate()) {
+                              formKey.currentState!.save();
+                              await _controller.insertProductCategory(name);
+                            }
+                          },
+                          child: const Text('Cadastrar')),
                     ],
                   ),
                 ],

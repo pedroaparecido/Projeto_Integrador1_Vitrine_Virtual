@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../../core/fakes/images.dart';
 import '../../../../core/widgets/footer_widget.dart';
 import '../../../admin/presentation/widgets/admin_menu_drawer_widget.dart';
+import '../controllers/banners_controller.dart';
 import '../widgets/banners_register_widget.dart';
 
 class BannersPage extends StatefulWidget {
@@ -25,6 +25,8 @@ class MyAppState extends State<BannersPage> {
   }
 
   Uint8List? imageFile;
+
+  final _controller = Get.put(BannersController());
 
   @override
   Widget build(BuildContext context) {
@@ -72,51 +74,55 @@ class MyAppState extends State<BannersPage> {
             SizedBox(
               width: 900,
               child: Card(
-                elevation: 5,
-                child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: fakeImagesBanner.length,
-                        itemBuilder: (context, index) => Padding(
-                              padding: const EdgeInsets.only(bottom: 14.0),
-                              child: Card(
-                                elevation: 8,
-                                child: Row(children: [
-                                  Expanded(
-                                    child: SizedBox(
-                                      height: 200,
-                                      child: Image.network(
-                                        fakeImagesBanner[index],
-                                        fit: BoxFit.cover,
-                                        width: MediaQuery.of(context).size.width,
+                  elevation: 5,
+                  child: Obx(
+                    () => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                        child: _controller.isLoading.value
+                            ? const Text('Loading')
+                            : ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: _controller.banners.length,
+                                itemBuilder: (context, index) => Padding(
+                                      padding: const EdgeInsets.only(bottom: 14.0),
+                                      child: Card(
+                                        elevation: 8,
+                                        child: Row(children: [
+                                          Expanded(
+                                            child: SizedBox(
+                                              height: 200,
+                                              child: Image.network(
+                                                _controller.banners[index].image,
+                                                fit: BoxFit.cover,
+                                                width: MediaQuery.of(context).size.width,
+                                              ),
+                                            ),
+                                          ),
+                                          IconButton(
+                                              onPressed: () {}, icon: const Icon(Icons.delete, color: Colors.red)),
+                                        ]),
                                       ),
-                                    ),
-                                  ),
-                                  IconButton(onPressed: () {}, icon: const Icon(Icons.delete, color: Colors.red)),
-                                ]),
-                              ),
-                            )
-                        // ListTile(
-                        //   tileColor: index % 2 == 0 ? const Color(0xFFE0E0E0) : null,
-                        //   leading: Image.network(
-                        //     fakeProduct[index]['url']!,
-                        //     height: 150,
-                        //   ),
-                        //   title: Text('#000$index - ${fakeProduct[index]['name']!}'),
-                        //   subtitle: Text('R\$ ${fakeProduct[index]['price']!}'),
-                        //   trailing: SizedBox(
-                        //     width: 80,
-                        //     child: Row(
-                        //       children: [
-                        //         IconButton(onPressed: () {}, icon: const Icon(Icons.edit, color: Colors.blue)),
-                        //         IconButton(onPressed: () {}, icon: const Icon(Icons.delete, color: Colors.red)),
-                        //       ],
-                        //     ),
-                        //   ),
-                        // ),
-                        )),
-              ),
+                                    )
+                                // ListTile(
+                                //   tileColor: index % 2 == 0 ? const Color(0xFFE0E0E0) : null,
+                                //   leading: Image.network(
+                                //     fakeProduct[index]['url']!,
+                                //     height: 150,
+                                //   ),
+                                //   title: Text('#000$index - ${fakeProduct[index]['name']!}'),
+                                //   subtitle: Text('R\$ ${fakeProduct[index]['price']!}'),
+                                //   trailing: SizedBox(
+                                //     width: 80,
+                                //     child: Row(
+                                //       children: [
+                                //         IconButton(onPressed: () {}, icon: const Icon(Icons.edit, color: Colors.blue)),
+                                //         IconButton(onPressed: () {}, icon: const Icon(Icons.delete, color: Colors.red)),
+                                //       ],
+                                //     ),
+                                //   ),
+                                // ),
+                                )),
+                  )),
             ),
 
             // GridView.builder(

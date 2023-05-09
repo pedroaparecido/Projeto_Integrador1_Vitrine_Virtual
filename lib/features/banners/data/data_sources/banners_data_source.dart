@@ -1,4 +1,10 @@
+
+import 'dart:async';
+
+import '../../../../core/fakes/images.dart';
+
 import '../../../../core/services/graphql_service.dart';
+
 import '../../domain/entities/banners_entity.dart';
 import '../model/banners_category_gql_model.dart';
 import '../model/banners_model.dart';
@@ -15,11 +21,11 @@ class ProductCategoryDataSourceImpl implements BannersDataSource {
 
   final GraphqlService _graphqlService;
 
-  @override
+  
   Future<bool> delete(int id) async {
     final res = await _graphqlService.mutationGql(mutationQuery: BannersCategoryGqlModel.delete(id));
 
-    if (res['delete_banners_category']['affected_rows'] == 1) return true;
+    if (res['delete_banners']['affected_rows'] == 1) return true;
     return false;
   }
 

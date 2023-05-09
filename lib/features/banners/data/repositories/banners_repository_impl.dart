@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:vitrine_virtual/features/banners/data/data_sources/banners_data_source.dart';
 
-import 'package:vitrine_virtual/features/banners/domain/entities/banners_entity.dart';
-import 'package:vitrine_virtual/features/banners/domain/repositories/banners_repository.dart';
+import '../../domain/entities/banners_entity.dart';
+import '../../domain/repositories/banners_repository.dart';
+import '../data_sources/banners_data_source.dart';
 
 class BannersRepositoryImpl implements BannersRepository {
   BannersRepositoryImpl(this._dataSource);
@@ -20,12 +20,22 @@ class BannersRepositoryImpl implements BannersRepository {
   }
 
   @override
-  Future<Either<Exception, BannersEntity>> insert({required BannersEntity image}) async {
+  Future<Either<Exception, BannersEntity>> insert({required String image}) async {
     try {
       final res = await _dataSource.insert(image: image);
       return Right(res);
     } catch (err) {
-      return Left(Exception('Não foi possivel inserir o produto\nERRO: $err'));
+      return Left(Exception('Não foi possivel inserir a imagem\nERRO: $err'));
+    }
+  }
+
+  @override
+  Future<Either<Exception, BannersEntity>> update({required BannersEntity image}) async {
+    try {
+      final res = await _dataSource.update(image: image);
+      return Right(res);
+    } catch (err) {
+      return Left(Exception('Não foi possivel atualizar a imagem\nERRO: $err'));
     }
   }
 

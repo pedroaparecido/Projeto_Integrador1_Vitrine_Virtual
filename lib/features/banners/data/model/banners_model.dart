@@ -16,4 +16,8 @@ class BannersModel extends BannersEntity {
   }
 
   factory BannersModel.fromJson(String source) => BannersModel.fromMap(json.decode(source));
+
+  static List<BannersModel> fromListMap(dynamic listMap) {
+    return List<BannersModel>.from(listMap.map((x) => BannersModel.fromMap(x)));
+  }
 }

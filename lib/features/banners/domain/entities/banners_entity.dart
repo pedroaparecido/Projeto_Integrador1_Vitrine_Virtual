@@ -9,6 +9,6 @@ class BannersEntity {
 
   @override
   String toString() {
-    return 'ProductEntity(id: $id,  image: $image)';
+    return 'BannersEntity(id: $id,  image: $image)';
   }
 }

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import '../../../../core/services/image_service.dart';
+import '../../../../service_locator.dart';
 import '../../domain/entities/banners_entity.dart';
 
 class BannersModel extends BannersEntity {
@@ -9,9 +11,11 @@ class BannersModel extends BannersEntity {
   });
 
   factory BannersModel.fromMap(Map<String, dynamic> map) {
+    final imageService = sl<ImageService>();
+
     return BannersModel(
       id: map['id']?.toInt(),
-      image: map['image'] ?? '',
+      image: imageService.decoderImage(map['image']),
     );
   }
 

@@ -15,7 +15,7 @@ class BannersRepositoryImpl implements BannersRepository {
       final res = await _dataSource.getAll();
       return Right(res);
     } catch (err) {
-      return Left(Exception('Não foi possivel buscar os produtos\nERRO: $err'));
+      return Left(Exception('Não foi possivel buscar os banners\nERRO: $err'));
     }
   }
 
@@ -25,17 +25,7 @@ class BannersRepositoryImpl implements BannersRepository {
       final res = await _dataSource.insert(image: image);
       return Right(res);
     } catch (err) {
-      return Left(Exception('Não foi possivel inserir a imagem\nERRO: $err'));
-    }
-  }
-
-  @override
-  Future<Either<Exception, BannersEntity>> update({required BannersEntity image}) async {
-    try {
-      final res = await _dataSource.update(image: image);
-      return Right(res);
-    } catch (err) {
-      return Left(Exception('Não foi possivel atualizar a imagem\nERRO: $err'));
+      return Left(Exception('Não foi possivel inserir o banner\nERRO: $err'));
     }
   }
 

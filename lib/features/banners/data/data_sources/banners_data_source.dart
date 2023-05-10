@@ -1,52 +1,40 @@
-
 import 'dart:async';
 
-import '../../../../core/fakes/images.dart';
-
 import '../../../../core/services/graphql_service.dart';
-
 import '../../domain/entities/banners_entity.dart';
-import '../model/banners_category_gql_model.dart';
+import '../model/banners_gql_model.dart';
 import '../model/banners_model.dart';
 
 abstract class BannersDataSource {
   Future<BannersEntity> insert({required String image});
-  Future<BannersEntity> update({required BannersEntity image});
   Future<bool> delete(int id);
   Future<List<BannersEntity>> getAll();
 }
 
-class ProductCategoryDataSourceImpl implements BannersDataSource {
-  ProductCategoryDataSourceImpl(this._graphqlService);
-
+class BannersDataSourceImpl implements BannersDataSource {
   final GraphqlService _graphqlService;
 
-  
-  Future<bool> delete(int id) async {
-    final res = await _graphqlService.mutationGql(mutationQuery: BannersCategoryGqlModel.delete(id));
+  BannersDataSourceImpl(this._graphqlService);
 
-    if (res['delete_banners']['affected_rows'] == 1) return true;
+  @override
+  Future<bool> delete(int id) async {
+    final res = await _graphqlService.mutationGql(mutationQuery: BannersGqlModel.delete(id));
+
+    if (res['delete_banner']['affected_rows'] == 1) return true;
     return false;
   }
 
   @override
   Future<List<BannersEntity>> getAll() async {
-    final res = await _graphqlService.queryGql(query: BannersCategoryGqlModel.get());
+    final res = await _graphqlService.queryGql(query: BannersGqlModel.get());
 
-    return BannersModel.fromListMap(res['banners_category']);
+    return BannersModel.fromListMap(res['banner']);
   }
 
   @override
   Future<BannersEntity> insert({required String image}) async {
-    final res = await _graphqlService.mutationGql(mutationQuery: BannersCategoryGqlModel.insert(image));
+    final res = await _graphqlService.mutationGql(mutationQuery: BannersGqlModel.insert(image));
 
-    return BannersModel.fromMap(res['insert_banners_category']['returning'][0]);
-  }
-
-  @override
-  Future<BannersEntity> update({required BannersEntity image}) async {
-    final res = await _graphqlService.mutationGql(mutationQuery: BannersCategoryGqlModel.update(image));
-
-    return BannersModel.fromMap(res['update_banners_category']['returning'][0]);
+    return BannersModel.fromMap(res['insert_banner']['returning'][0]);
   }
 }

@@ -1,30 +1,13 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/widgets/footer_widget.dart';
 import '../../../admin/presentation/widgets/admin_menu_drawer_widget.dart';
 import '../controllers/banners_controller.dart';
 import '../widgets/banners_register_widget.dart';
 
-class BannersPage extends StatefulWidget {
-  const BannersPage({Key? key}) : super(key: key);
-
-  @override
-  MyAppState createState() => MyAppState();
-}
-
-final picker = ImagePicker();
-
-class MyAppState extends State<BannersPage> {
-  Future<XFile?> chooseImage(ImageSource source) async {
-    final res = picker.pickImage(source: ImageSource.gallery);
-    return res;
-  }
-
-  Uint8List? imageFile;
+class BannersPage extends StatelessWidget {
+  BannersPage({super.key});
 
   final _controller = Get.put(BannersController());
 
@@ -38,7 +21,7 @@ class MyAppState extends State<BannersPage> {
             tooltip: 'Adicionar Banner',
             icon: const Icon(Icons.add),
             onPressed: () => Get.dialog(
-              const Center(child: BannersRegisterWidget()),
+              Center(child: BannersRegisterWidget()),
               name: 'Adicionar Banner',
               barrierDismissible: false,
             ),
@@ -50,27 +33,6 @@ class MyAppState extends State<BannersPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Row(
-            //   children: [
-            //     const Padding(
-            //       padding: EdgeInsets.all(16.0),
-            //       child: Text('Cadastro de Banner', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-            //     ),
-            //     const Expanded(child: Divider()),
-            //     Padding(
-            //       padding: const EdgeInsets.all(18.0),
-            //       child: IconButton(
-            //         tooltip: 'Adicionar Banner',
-            //         icon: const Icon(Icons.add),
-            //         onPressed: () => Get.dialog(
-            //           const Center(child: ImagesBannerRegisterWidget()),
-            //           name: 'Adicionar Banner',
-            //           barrierDismissible: false,
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
             SizedBox(
               width: 900,
               child: Card(
@@ -83,64 +45,36 @@ class MyAppState extends State<BannersPage> {
                             : ListView.builder(
                                 shrinkWrap: true,
                                 itemCount: _controller.banners.length,
-                                itemBuilder: (context, index) => Padding(
-                                      padding: const EdgeInsets.only(bottom: 14.0),
-                                      child: Card(
-                                        elevation: 8,
-                                        child: Row(children: [
-                                          Expanded(
-                                            child: SizedBox(
-                                              height: 200,
-                                              child: Image.network(
-                                                _controller.banners[index].image,
-                                                fit: BoxFit.cover,
-                                                width: MediaQuery.of(context).size.width,
-                                              ),
+                                itemBuilder: (context, index) {
+                                  final banner = _controller.banners[index];
+                                  return Padding(
+                                    padding: const EdgeInsets.only(bottom: 14.0),
+                                    child: Card(
+                                      elevation: 8,
+                                      child: Row(children: [
+                                        Expanded(
+                                          child: SizedBox(
+                                            height: 200,
+                                            child: Image.memory(
+                                              banner.image,
+                                              fit: BoxFit.cover,
+                                              width: MediaQuery.of(context).size.width,
                                             ),
                                           ),
-                                          IconButton(
-                                              onPressed: () {}, icon: const Icon(Icons.delete, color: Colors.red)),
-                                        ]),
-                                      ),
-                                    )
-                                // ListTile(
-                                //   tileColor: index % 2 == 0 ? const Color(0xFFE0E0E0) : null,
-                                //   leading: Image.network(
-                                //     fakeProduct[index]['url']!,
-                                //     height: 150,
-                                //   ),
-                                //   title: Text('#000$index - ${fakeProduct[index]['name']!}'),
-                                //   subtitle: Text('R\$ ${fakeProduct[index]['price']!}'),
-                                //   trailing: SizedBox(
-                                //     width: 80,
-                                //     child: Row(
-                                //       children: [
-                                //         IconButton(onPressed: () {}, icon: const Icon(Icons.edit, color: Colors.blue)),
-                                //         IconButton(onPressed: () {}, icon: const Icon(Icons.delete, color: Colors.red)),
-                                //       ],
-                                //     ),
-                                //   ),
-                                // ),
-                                )),
+                                        ),
+                                        IconButton(
+                                          onPressed: () => _controller.deleteBanner(banner.id!),
+                                          icon: const Icon(
+                                            Icons.delete,
+                                            color: Colors.red,
+                                          ),
+                                        ),
+                                      ]),
+                                    ),
+                                  );
+                                })),
                   )),
             ),
-
-            // GridView.builder(
-            //   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            //     maxCrossAxisExtent: 300,
-            //     childAspectRatio: 1,
-            //   ),
-            //   shrinkWrap: true,
-            //   itemCount: fakeProduct.length,
-            //   itemBuilder: (context, index) => InkWell(
-            //     onTap: () => () {},
-            //     child: ProductDisplayCardWidget(
-            //       nameProduct: fakeProduct[index]['name']!,
-            //       priceProduct: fakeProduct[index]['price']!,
-            //       urlImage: fakeProduct[index]['url']!,
-            //     ),
-            //   ),
-            // ),
             const FooterWidget(),
           ],
         ),

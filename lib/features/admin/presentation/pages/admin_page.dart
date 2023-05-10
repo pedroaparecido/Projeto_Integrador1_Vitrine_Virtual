@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:vitrine_virtual/core/configs/route_config.dart';
 
 import '../widgets/admin_menu_drawer_widget.dart';
 

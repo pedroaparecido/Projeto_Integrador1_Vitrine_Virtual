@@ -6,7 +6,7 @@ import 'domain/repositories/banners_repository.dart';
 class BannersLocator {
   static void init(GetIt sl) {
     // Data sources
-    sl.registerFactory<BannersDataSource>(() => BannersRepositoryImpl(sl()));
+    sl.registerFactory<BannersDataSource>(() => BannersDataSourceImpl(sl()));
 
     // Repository
     sl.registerFactory<BannersRepository>(() => BannersRepositoryImpl(sl()));

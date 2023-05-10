@@ -1,25 +1,12 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 
-class BannersRegisterWidget extends StatefulWidget {
-  const BannersRegisterWidget({Key? key}) : super(key: key);
+import '../controllers/banners_controller.dart';
 
-  @override
-  MyAppState createState() => MyAppState();
-}
+class BannersRegisterWidget extends StatelessWidget {
+  BannersRegisterWidget({super.key});
 
-final picker = ImagePicker();
-
-class MyAppState extends State<BannersRegisterWidget> {
-  Future<XFile?> chooseImage(ImageSource source) async {
-    final res = picker.pickImage(source: ImageSource.gallery);
-    return res;
-  }
-
-  Uint8List? imageFile;
+  final _controller = Get.find<BannersController>();
 
   @override
   Widget build(BuildContext context) {
@@ -43,38 +30,23 @@ class MyAppState extends State<BannersRegisterWidget> {
                         'Cadastro de Banner',
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      imageFile == null
-                          ? Image.asset(
-                              'assets/images/no-img.jpg',
-                              height: 180.0,
-                              width: 250,
-                            )
-                          : Image.memory(imageFile!),
+                      Obx(
+                        () => _controller.isLoading.value
+                            ? const Center(child: SizedBox(height: 40, child: CircularProgressIndicator()))
+                            : _controller.imageFileSelected == null
+                                ? Image.asset(
+                                    'assets/images/no-img.jpg',
+                                    height: 180.0,
+                                    width: 250,
+                                  )
+                                : Image.memory(_controller.imageFileSelected!),
+                      ),
                       const SizedBox(height: 10),
                       Row(
                         children: [
                           Expanded(
                             child: ElevatedButton(
-                              onPressed: () async {
-                                imageFile = null;
-                                setState(() {});
-                              },
-                              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                              child: const Text('Remover'),
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: ElevatedButton(
-                              onPressed: () async {
-                                final image = await chooseImage(ImageSource.gallery);
-                                if (image != null) {
-                                  imageFile = await image.readAsBytes();
-                                }
-                                // mensagem para o usuario;
-
-                                setState(() {});
-                              },
+                              onPressed: _controller.getLocalImage,
                               child: const Text('Adicionar Imagem'),
                             ),
                           ),
@@ -86,7 +58,10 @@ class MyAppState extends State<BannersRegisterWidget> {
                           Expanded(
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                              onPressed: Get.back,
+                              onPressed: () {
+                                _controller.imageFileSelected = null;
+                                Get.back();
+                              },
                               child: const Text(
                                 'Cancelar',
                                 style: TextStyle(color: Colors.black),
@@ -97,7 +72,7 @@ class MyAppState extends State<BannersRegisterWidget> {
                           Expanded(
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
-                              onPressed: () {},
+                              onPressed: _controller.insertBanner,
                               child: const Text(
                                 'Cadastrar',
                                 style: TextStyle(color: Colors.black),

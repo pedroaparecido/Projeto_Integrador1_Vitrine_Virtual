@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 class BannersEntity {
   BannersEntity({
     this.id,
@@ -5,7 +7,7 @@ class BannersEntity {
   });
 
   int? id;
-  String image;
+  Uint8List image;
 
   @override
   String toString() {

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../../core/fakes/products.dart';
 import '../../../../core/widgets/footer_widget.dart';
 import '../../../../core/widgets/header_widget.dart';
-import '../widgets/banner_widget.dart';
+import '../../../banners/presentation/widgets/banner_public_widget.dart';
 import '../../../product/presentation/widgets/product_category_buttons_widget.dart';
 import '../../../product/presentation/widgets/product_display_card_widget.dart';
 import '../widgets/product_detail_widget.dart';
@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
             children: [
               const HeaderWidget(),
               const ProductCategoryButtonsWidget(),
-              const BannerWidget(),
+              BannerWidget(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
                 child: Card(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/widgets/footer_widget.dart';
+import '../../../../core/widgets/loading_widget.dart';
 import '../../../admin/presentation/widgets/admin_menu_drawer_widget.dart';
 import '../controllers/company_controller.dart';
 
@@ -19,7 +20,7 @@ class CompanyRegisterPage extends StatelessWidget {
       drawer: const AdminMenuDrawerWidget(),
       body: Obx(
         () => _controller.isLoading.value
-            ? const Center(child: SizedBox(width: 80, height: 80, child: CircularProgressIndicator()))
+            ? const LoadingWidget()
             : SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,

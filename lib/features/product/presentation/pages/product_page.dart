@@ -1,30 +1,17 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:vitrine_virtual/core/helpers/regularize_helper.dart';
+import 'package:vitrine_virtual/core/widgets/loading_widget.dart';
 
-import '../../../../core/fakes/products.dart';
+import '../controllers/product_controller.dart';
 import '../widgets/product_register_widget.dart';
 import '../../../../core/widgets/footer_widget.dart';
 import '../../../admin/presentation/widgets/admin_menu_drawer_widget.dart';
 
-class ProductPage extends StatefulWidget {
-  const ProductPage({Key? key}) : super(key: key);
+class ProductPage extends StatelessWidget {
+  ProductPage({super.key});
 
-  @override
-  MyAppState createState() => MyAppState();
-}
-
-final picker = ImagePicker();
-
-class MyAppState extends State<ProductPage> {
-  Future<XFile?> chooseImage(ImageSource source) async {
-    final res = picker.pickImage(source: ImageSource.gallery);
-    return res;
-  }
-
-  Uint8List? imageFile;
+  final _controller = Get.put(ProductController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +23,7 @@ class MyAppState extends State<ProductPage> {
             tooltip: 'Adicionar Produto',
             icon: const Icon(Icons.add),
             onPressed: () => Get.dialog(
-              const Center(child: ProductRegisterWidget()),
+              Center(child: ProductRegisterWidget()),
               name: 'Adicionar Produto',
               barrierDismissible: false,
             ),
@@ -53,48 +40,45 @@ class MyAppState extends State<ProductPage> {
               child: Card(
                 elevation: 5,
                 child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: fakeProduct.length,
-                      itemBuilder: (context, index) => ListTile(
-                        tileColor: index % 2 == 0 ? const Color(0xFFE0E0E0) : null,
-                        leading: Image.network(
-                          fakeProduct[index]['url']!,
-                          height: 150,
-                        ),
-                        title: Text('#000$index - ${fakeProduct[index]['name']!}'),
-                        subtitle: Text('R\$ ${fakeProduct[index]['price']!}'),
-                        trailing: SizedBox(
-                          width: 80,
-                          child: Row(
-                            children: [
-                              IconButton(onPressed: () {}, icon: const Icon(Icons.edit, color: Colors.blue)),
-                              IconButton(onPressed: () {}, icon: const Icon(Icons.delete, color: Colors.red)),
-                            ],
-                          ),
-                        ),
-                      ),
-                    )),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                  child: Obx(
+                    () => _controller.isLoading.value
+                        ? const LoadingWidget()
+                        : _controller.products.isEmpty
+                            ? const Center(child: Text('Nenhum produto cadastrado'))
+                            : ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: _controller.products.length,
+                                itemBuilder: (context, index) {
+                                  final product = _controller.products[index];
+                                  return ListTile(
+                                    tileColor: index % 2 == 0 ? const Color(0xFFE0E0E0) : null,
+                                    leading: Image.memory(
+                                      product.image,
+                                      height: 150,
+                                    ),
+                                    title: Text('#${product.id.toString().padLeft(4, '0')} - ${product.name}'),
+                                    subtitle: Text(RegularizeHelper.doubleToRealCurrency(value: product.price)),
+                                    trailing: SizedBox(
+                                      width: 80,
+                                      child: Row(
+                                        children: [
+                                          IconButton(
+                                              onPressed: () {}, icon: const Icon(Icons.edit, color: Colors.blue)),
+                                          IconButton(
+                                            icon: const Icon(Icons.delete, color: Colors.red),
+                                            onPressed: () => _controller.deleteProduct(product.id!),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                  ),
+                ),
               ),
             ),
-
-            // GridView.builder(
-            //   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            //     maxCrossAxisExtent: 300,
-            //     childAspectRatio: 1,
-            //   ),
-            //   shrinkWrap: true,
-            //   itemCount: fakeProduct.length,
-            //   itemBuilder: (context, index) => InkWell(
-            //     onTap: () => () {},
-            //     child: ProductDisplayCardWidget(
-            //       nameProduct: fakeProduct[index]['name']!,
-            //       priceProduct: fakeProduct[index]['price']!,
-            //       urlImage: fakeProduct[index]['url']!,
-            //     ),
-            //   ),
-            // ),
             const FooterWidget(),
           ],
         ),

@@ -3,13 +3,13 @@ import 'package:get/get.dart';
 
 import '../../../../core/widgets/footer_widget.dart';
 import '../../../admin/presentation/widgets/admin_menu_drawer_widget.dart';
-import '../controllers/product_controller.dart';
+import '../controllers/product_category_register_controller.dart';
 import '../widgets/product_category_register_widget.dart';
 
 class ProductCategoryPage extends StatelessWidget {
   ProductCategoryPage({super.key});
 
-  final _controller = Get.put(ProductController());
+  final _controller = Get.put(ProductCategoryRegisterController());
 
   @override
   Widget build(BuildContext context) {

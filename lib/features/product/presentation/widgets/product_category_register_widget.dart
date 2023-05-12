@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/product_controller.dart';
+import '../controllers/product_category_register_controller.dart';
 
 class ProductCategoryRegisterWidget extends StatelessWidget {
   ProductCategoryRegisterWidget({super.key});
 
-  final _controller = Get.find<ProductController>();
+  final _controller = Get.find<ProductCategoryRegisterController>();
   final formKey = GlobalKey<FormState>();
 
   @override

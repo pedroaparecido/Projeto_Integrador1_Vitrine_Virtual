@@ -1,25 +1,13 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
+import 'product_category_dropdown_widget.dart';
 
-class ProductRegisterWidget extends StatefulWidget {
-  const ProductRegisterWidget({Key? key}) : super(key: key);
+import '../controllers/product_controller.dart';
 
-  @override
-  MyAppState createState() => MyAppState();
-}
+class ProductRegisterWidget extends StatelessWidget {
+  ProductRegisterWidget({super.key});
 
-final picker = ImagePicker();
-
-class MyAppState extends State<ProductRegisterWidget> {
-  Future<XFile?> chooseImage(ImageSource source) async {
-    final res = picker.pickImage(source: ImageSource.gallery);
-    return res;
-  }
-
-  Uint8List? imageFile;
+  final _controller = Get.find<ProductController>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +24,7 @@ class MyAppState extends State<ProductRegisterWidget> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                 child: Form(
+                  key: _controller.formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -43,57 +32,46 @@ class MyAppState extends State<ProductRegisterWidget> {
                         'Cadastro de Produto',
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      imageFile == null
-                          ? Image.asset(
-                              'assets/images/no-img.jpg',
-                              height: 250.0,
-                            )
-                          : Image.memory(imageFile!),
-                      const SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: ElevatedButton(
-                              onPressed: () async {
-                                imageFile = null;
-                                setState(() {});
-                              },
-                              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                              child: const Text('Remover'),
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: ElevatedButton(
-                              onPressed: () async {
-                                final image = await chooseImage(ImageSource.gallery);
-                                if (image != null) {
-                                  imageFile = await image.readAsBytes();
-                                }
-                                // mensagem para o usuario;
-
-                                setState(() {});
-                              },
-                              child: const Text('Adicionar Imagem'),
-                            ),
-                          ),
-                        ],
+                      Obx(
+                        () => _controller.isLoading.value
+                            ? const Center(child: SizedBox(height: 40, child: CircularProgressIndicator()))
+                            : _controller.imageFileSelected == null
+                                ? Image.asset(
+                                    'assets/images/no-img.jpg',
+                                    height: 180.0,
+                                    width: 250,
+                                  )
+                                : Image.memory(_controller.imageFileSelected!),
                       ),
-                      const SizedBox(height: 15),
+                      const SizedBox(height: 10),
+                      ElevatedButton(
+                        onPressed: _controller.getLocalImage,
+                        child: const Text('Adicionar Imagem'),
+                      ),
+                      const SizedBox(height: 35),
+                      ProductCategoryDropdownWidget(
+                        onSaved: (value) => _controller.productCategory = value!,
+                        onChanged: (value) => _controller.productCategory = value!,
+                      ),
+                      const SizedBox(height: 10),
                       TextFormField(
+                        controller: _controller.nameInputController,
                         strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
                         decoration: const InputDecoration(
                           labelText: 'Nome do Produto',
                         ),
                       ),
                       TextFormField(
+                        controller: _controller.descriptionInputController,
                         strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
                         decoration: const InputDecoration(
                           labelText: 'Detalhes do Produto',
                         ),
                       ),
                       TextFormField(
+                        controller: _controller.priceInputController,
                         strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
+                        keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
                           labelText: 'Preço do Produto',
                         ),
@@ -115,7 +93,7 @@ class MyAppState extends State<ProductRegisterWidget> {
                           Expanded(
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
-                              onPressed: () {},
+                              onPressed: _controller.validForm,
                               child: const Text(
                                 'Cadastrar',
                                 style: TextStyle(color: Colors.black),

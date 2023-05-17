@@ -45,7 +45,9 @@ class ProductPage extends StatelessWidget {
                     () => _controller.isLoading.value
                         ? const LoadingWidget()
                         : _controller.products.isEmpty
-                            ? const Center(child: Text('Nenhum produto cadastrado'))
+                            ? SizedBox(
+                                height: MediaQuery.of(context).size.height - 300,
+                                child: const Center(child: Text('Nenhum produto cadastrado')))
                             : ListView.builder(
                                 shrinkWrap: true,
                                 itemCount: _controller.products.length,

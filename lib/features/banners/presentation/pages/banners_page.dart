@@ -41,7 +41,9 @@ class BannersPage extends StatelessWidget {
                     () => Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                         child: _controller.isLoading.value
-                            ? const Text('Loading')
+                            ? SizedBox(
+                                height: MediaQuery.of(context).size.height - 300,
+                                child: const Center(child: Text('Nenhum produto cadastrado')))
                             : ListView.builder(
                                 shrinkWrap: true,
                                 itemCount: _controller.banners.length,

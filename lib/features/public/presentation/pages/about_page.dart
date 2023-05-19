@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/widgets/footer_widget.dart';
-import '../../../../core/widgets/header_widget.dart';
+import '../widgets/public_body_widget.dart';
 import '../widgets/public_menu_drawer_widget.dart';
 
 class AboutPage extends StatelessWidget {
@@ -9,136 +8,244 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
-        drawer: const PublicMenuDrawerWidget(),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+      drawer: const PublicMenuDrawerWidget(),
+      body: PublicBodyWidget(
+        children: [
+          const SizedBox(height: 50),
+          SizedBox(
+            height: 50,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              width: 750,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text("QUEM SOMOS", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+                  VerticalDivider(color: Colors.grey),
+                  Expanded(
+                    child: Text("Conheça mais sobre o Kako Serv Festas, nossa história, visão, missão e valores."),
+                  )
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 35),
+          _AboutDescriptionAndImageWidget(screenWidth: screenWidth),
+          const SizedBox(height: 60),
+          _AboutMissionVisionValueWidget(screenWidth: screenWidth),
+        ],
+      ),
+    );
+  }
+}
+
+class _AboutMissionVisionValueWidget extends StatelessWidget {
+  const _AboutMissionVisionValueWidget({required double screenWidth}) : _screenWidth = screenWidth;
+
+  final double _screenWidth;
+
+  @override
+  Widget build(BuildContext context) {
+    print(_screenWidth);
+    return _screenWidth > 750
+        ? Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const HeaderWidget(),
-              SizedBox(
-                height: 50,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text("QUEM SOMOS", style: TextStyle(fontWeight: FontWeight.bold)),
-                    VerticalDivider(color: Colors.grey),
-                    Text("Conheça mais sobre o Kako Serv Festas, nossa história, visão, missão e valores.")
-                  ],
-                ),
-              ),
-              const Divider(),
-              Center(
-                child: Container(
-                  color: Colors.black45,
-                  height: 500,
-                  child: Row(
-                    children: [
-                      Expanded(
-                          flex: 6,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 80, right: 20),
-                            child: SingleChildScrollView(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(
-                                      'Kako Serv Festas',
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(fontSize: 28, color: Colors.white),
-                                    ),
-                                  ),
-                                  Text(
-                                    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
-                                    style: TextStyle(fontSize: 18, color: Colors.white),
-                                    textAlign: TextAlign.justify,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )),
-                      Expanded(
-                        flex: 6,
-                        child: Image.asset(
-                          'assets/images/fachada1.jpg',
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const Divider(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              Column(
                 children: [
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 25),
-                        child: Image.asset(
-                          'assets/images/missao1.png',
-                          height: 100,
-                          width: 100,
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 50),
-                        child: Text('NOSSA MISSÃO', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 15, bottom: 50),
-                        child: Text('Vender produtos de qualidade', style: TextStyle(fontSize: 18)),
-                      ),
-                    ],
+                  Image.asset(
+                    'assets/images/missao1.png',
+                    height: 100,
+                    width: 100,
                   ),
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 25),
-                        child: Image.asset(
-                          'assets/images/visao.png',
-                          height: 100,
-                          width: 100,
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 50),
-                        child: Text('NOSSA VISÃO', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 15, bottom: 50),
-                        child: Text('Crescer,desenvolver,expandir', style: TextStyle(fontSize: 18)),
-                      ),
-                    ],
+                  const Padding(
+                    padding: EdgeInsets.only(top: 50),
+                    child: Text('NOSSA MISSÃO', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
                   ),
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 25),
-                        child: Image.asset(
-                          'assets/images/value.png',
-                          height: 100,
-                          width: 100,
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 50),
-                        child: Text('NOSSOS VALORES', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 15, bottom: 50),
-                        child: Text('XXXXXXXXXXXXXXXXXXX', style: TextStyle(fontSize: 18)),
-                      ),
-                    ],
+                  const Padding(
+                    padding: EdgeInsets.only(top: 15, bottom: 50),
+                    child: Text('Vender produtos de qualidade', style: TextStyle(fontSize: 18)),
                   ),
                 ],
               ),
-              const FooterWidget()
+              Column(
+                children: [
+                  Image.asset(
+                    'assets/images/visao.png',
+                    height: 100,
+                    width: 100,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 50),
+                    child: Text('NOSSA VISÃO', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 15, bottom: 50),
+                    child: Text('Crescer,desenvolver,expandir', style: TextStyle(fontSize: 18)),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Image.asset(
+                    'assets/images/value.png',
+                    height: 100,
+                    width: 100,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 50),
+                    child: Text('NOSSOS VALORES', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 15, bottom: 50),
+                    child: Text('XXXXXXXXXXXXXXXXXXX', style: TextStyle(fontSize: 18)),
+                  ),
+                ],
+              ),
             ],
-          ),
-        ));
+          )
+        : Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                children: [
+                  Image.asset(
+                    'assets/images/missao1.png',
+                    height: 100,
+                    width: 100,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 50),
+                    child: Text('NOSSA MISSÃO', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 15, bottom: 50),
+                    child: Text('Vender produtos de qualidade', style: TextStyle(fontSize: 18)),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Image.asset(
+                    'assets/images/visao.png',
+                    height: 100,
+                    width: 100,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 50),
+                    child: Text('NOSSA VISÃO', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 15, bottom: 50),
+                    child: Text('Crescer,desenvolver,expandir', style: TextStyle(fontSize: 18)),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Image.asset(
+                    'assets/images/value.png',
+                    height: 100,
+                    width: 100,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 50),
+                    child: Text('NOSSOS VALORES', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 15, bottom: 50),
+                    child: Text('XXXXXXXXXXXXXXXXXXX', style: TextStyle(fontSize: 18)),
+                  ),
+                ],
+              ),
+            ],
+          );
+  }
+}
+
+class _AboutDescriptionAndImageWidget extends StatelessWidget {
+  const _AboutDescriptionAndImageWidget({required double screenWidth}) : _screenWidth = screenWidth;
+
+  final double _screenWidth;
+
+  @override
+  Widget build(BuildContext context) {
+    return _screenWidth > 750
+        ? Container(
+            color: Colors.black45,
+            // height: 500,
+            child: Row(
+              children: [
+                Expanded(
+                    flex: 6,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 80, right: 20),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Kako Serv Festas',
+                                textAlign: TextAlign.start,
+                                style: TextStyle(fontSize: 28, color: Colors.white),
+                              ),
+                            ),
+                            Text(
+                              "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et ",
+                              style: TextStyle(fontSize: 18, color: Colors.white),
+                              textAlign: TextAlign.justify,
+                            ),
+                          ],
+                        ),
+                      ),
+                    )),
+                Expanded(
+                  flex: 6,
+                  child: Image.asset(
+                    'assets/images/fachada1.jpg',
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
+            ),
+          )
+        : Container(
+            color: Colors.black45,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(14),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          'Kako Serv Festas',
+                          style: TextStyle(fontSize: 28, color: Colors.white),
+                        ),
+                      ),
+                      Text(
+                        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et ",
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        textAlign: TextAlign.justify,
+                      ),
+                    ],
+                  ),
+                ),
+                Image.asset(
+                  'assets/images/fachada1.jpg',
+                  width: double.infinity,
+                  fit: BoxFit.fill,
+                ),
+              ],
+            ),
+          );
   }
 }

@@ -12,18 +12,13 @@ class HeaderWidget extends StatelessWidget {
       width: double.infinity,
       height: 120,
       decoration: BoxDecoration(
-        color: Colors.black54,
-        borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(10),
-            topRight: Radius.circular(10),
-            bottomLeft: Radius.circular(10),
-            bottomRight: Radius.circular(10)),
+        color: Colors.black,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
+            color: Colors.black.withOpacity(0.5),
             spreadRadius: 3,
-            blurRadius: 2,
-            offset: const Offset(0, 3), // changes position of shadow
+            blurRadius: 6,
+            offset: const Offset(1, 4), // changes position of shadow
           ),
         ],
       ),
@@ -32,10 +27,33 @@ class HeaderWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.asset('assets/images/logo.png'),
+            ClipOval(
+              child: Container(
+                margin: const EdgeInsets.all(3),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white.withOpacity(0.5), // Cor da sombra branca com transparência
+                      spreadRadius: 4, // Espalhamento da sombra
+                      blurRadius: 2, // Desfoque da sombra
+                      offset: const Offset(0, 2), // Deslocamento da sombra (horizontal, vertical)
+                    ),
+                  ],
+                ),
+                child: Image.asset(
+                  'assets/images/logo.png',
+                ),
+              ),
+            ),
             const Spacer(),
             MediaQuery.of(context).size.width < 450
-                ? IconButton(onPressed: () => Scaffold.of(context).openDrawer(), icon: const Icon(Icons.menu, size: 40))
+                ? IconButton(
+                    onPressed: () => Scaffold.of(context).openDrawer(),
+                    icon: const Icon(
+                      Icons.menu,
+                      size: 40,
+                      color: Colors.white,
+                    ))
                 : Row(
                     children: menuListButtons,
                   ),

@@ -2,7 +2,7 @@ import 'package:vitrine_virtual/features/company/domain/entities/company_entity.
 
 class CompanyGqlModel {
   static String get() => '''query {
-  company_by_pk(id: 1) {
+  company_by_pk(id: 2) {
     id
     legal_name
     trade_name
@@ -13,7 +13,6 @@ class CompanyGqlModel {
     street_number
     neighborhood
     city
-    city_state
     postal_code
     facebook
     instagram
@@ -25,7 +24,7 @@ class CompanyGqlModel {
 }''';
 
   static String update(CompanyEntity company) => '''mutation {
-  update_company_by_pk(pk_columns: {id: 1}, _set: {
+  update_company_by_pk(pk_columns: {id: 2}, _set: {
     legal_name: "${company.razaoSocial}", 
     trade_name: "${company.nomeFantasia}", 
     cnpj: "${company.cnpj}", 
@@ -53,7 +52,6 @@ class CompanyGqlModel {
     street_number
     neighborhood
     city
-    city_state
     postal_code
     facebook
     instagram

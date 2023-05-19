@@ -19,8 +19,9 @@ class BannerWidget extends StatelessWidget {
               ? Container()
               : CarouselSlider(
                   options: CarouselOptions(
-                    height: 400,
                     autoPlay: true,
+                    aspectRatio: 5,
+                    viewportFraction: 0.5,
                   ),
                   items: _controller.banners
                       .map((item) => Center(

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../../../../core/configs/route_config.dart';
 import '../../../../core/helpers/helper_menu_list_buttons.dart';
 
 class PublicMenuDrawerWidget extends StatelessWidget {
@@ -17,7 +15,7 @@ class PublicMenuDrawerWidget extends StatelessWidget {
         children: [
           const DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.orange,
+              color: Colors.black,
             ),
             child: Text(
               'Menu',
@@ -28,10 +26,6 @@ class PublicMenuDrawerWidget extends StatelessWidget {
             ),
           ),
           ...menuListButtons,
-          // ListTile(
-          //     leading: const Icon(Icons.abc),
-          //     title: const Text('Empresa'),
-          //     onTap: () => Get.offNamed(RouteConfig.companyRegister)),
         ],
       ),
     );

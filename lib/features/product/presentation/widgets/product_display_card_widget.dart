@@ -1,30 +1,32 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 
 class ProductDisplayCardWidget extends StatelessWidget {
   const ProductDisplayCardWidget({
     super.key,
-    required this.urlImage,
+    required this.image,
     required this.nameProduct,
     required this.priceProduct,
   });
 
-  final String urlImage;
+  final Uint8List image;
   final String nameProduct;
   final String priceProduct;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 300, // Defina a altura desejada para o card
+      height: 350,
       child: Card(
         elevation: 6,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
-              flex: 8, // Ajuste a proporção de altura da imagem
-              child: Image.network(
-                urlImage,
+              flex: 8,
+              child: Image.memory(
+                image,
                 fit: BoxFit.fitHeight,
               ),
             ),
@@ -32,24 +34,32 @@ class ProductDisplayCardWidget extends StatelessWidget {
             Expanded(
               flex: 4,
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(bottom: 12, left: 8, right: 8),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Expanded(
-                      child: Text(
-                        nameProduct,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
+                      flex: 2,
+                      child: Center(
+                        child: Text(
+                          nameProduct,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),
                     Expanded(
-                      child: Text(
-                        priceProduct,
-                        style: const TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
+                      flex: 1,
+                      child: Center(
+                        child: Text(
+                          priceProduct,
+                          style: const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),

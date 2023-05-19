@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vitrine_virtual/core/helpers/regularize_helper.dart';
-import 'package:vitrine_virtual/core/widgets/loading_widget.dart';
 
+import '../../../../core/helpers/regularize_helper.dart';
 import '../../../../core/widgets/body_widget.dart';
+import '../../../../core/widgets/loading_widget.dart';
+import '../../../admin/presentation/widgets/admin_menu_drawer_widget.dart';
 import '../controllers/product_controller.dart';
 import '../widgets/product_register_widget.dart';
-import '../../../../core/widgets/footer_widget.dart';
-import '../../../admin/presentation/widgets/admin_menu_drawer_widget.dart';
 
 class ProductPage extends StatelessWidget {
   ProductPage({super.key});

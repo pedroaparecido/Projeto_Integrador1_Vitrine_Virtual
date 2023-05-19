@@ -61,16 +61,6 @@ class ProductController extends GetxController {
     }
   }
 
-  // Future<void> getAllProductCategory() async {
-  //   isLoading.value = true;
-  //   final res = await _productRepository.getAll();
-  //   res.fold(
-  //     (l) => DialogWidget.feedback(result: false, message: l.toString()),
-  //     (r) => products.assignAll(r),
-  //   );
-  //   isLoading.value = false;
-  // }
-
   Future<void> insertProduct(ProductEntity product) async {
     isLoading.value = true;
     final res = await _productRepository.insert(product: product);

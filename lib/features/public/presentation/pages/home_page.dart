@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
         const SizedBox(height: 30),
         BannerWidget(),
         const ProductCategoryButtonsWidget(),
-        const ProductDisplayHomeWidget(),
+        ProductDisplayHomeWidget(),
       ]),
     );
   }

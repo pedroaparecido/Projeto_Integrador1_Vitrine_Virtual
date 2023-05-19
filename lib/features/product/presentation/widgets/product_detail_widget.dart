@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vitrine_virtual/core/helpers/regularize_helper.dart';
-import 'package:vitrine_virtual/features/product/domain/entities/product_entity.dart';
+
+import '../../../../core/helpers/regularize_helper.dart';
+import '../../domain/entities/product_entity.dart';
 
 class ProductDetailWidget extends StatelessWidget {
   const ProductDetailWidget({super.key, required ProductEntity product}) : _product = product;
@@ -23,7 +24,7 @@ class ProductDetailWidget extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        _product.name,
+                        _product.name.toUpperCase(),
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 20,

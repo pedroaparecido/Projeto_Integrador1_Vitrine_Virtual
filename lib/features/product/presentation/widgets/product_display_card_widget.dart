@@ -25,9 +25,12 @@ class ProductDisplayCardWidget extends StatelessWidget {
           children: [
             Expanded(
               flex: 8,
-              child: Image.memory(
-                image,
-                fit: BoxFit.fitHeight,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+                child: Image.memory(
+                  image,
+                  fit: BoxFit.fitHeight,
+                ),
               ),
             ),
             const Divider(),
@@ -42,10 +45,10 @@ class ProductDisplayCardWidget extends StatelessWidget {
                       flex: 2,
                       child: Center(
                         child: Text(
-                          nameProduct,
+                          nameProduct.toUpperCase(),
                           textAlign: TextAlign.center,
                           style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.w600,
                           ),
                         ),

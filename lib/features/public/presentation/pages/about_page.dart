@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/public_body_widget.dart';
 import '../widgets/public_menu_drawer_widget.dart';
+import '../widgets/public_title_sub_pages_widget.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -15,22 +16,9 @@ class AboutPage extends StatelessWidget {
       body: PublicBodyWidget(
         children: [
           const SizedBox(height: 50),
-          SizedBox(
-            height: 50,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              width: 750,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text("QUEM SOMOS", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
-                  VerticalDivider(color: Colors.grey),
-                  Expanded(
-                    child: Text("Conheça mais sobre o Kako Serv Festas, nossa história, visão, missão e valores."),
-                  )
-                ],
-              ),
-            ),
+          const PublicTitleSubPagesWidget(
+            title: 'QUEM SOMOS',
+            description: 'Conheça mais sobre o Kako Serv Festas, nossa história, visão, missão e valores.',
           ),
           const SizedBox(height: 35),
           _AboutDescriptionAndImageWidget(screenWidth: screenWidth),
@@ -49,7 +37,6 @@ class _AboutMissionVisionValueWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(_screenWidth);
     return _screenWidth > 750
         ? Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

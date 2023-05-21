@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../core/helpers/laucher_helper.dart';
-import '../../../../core/widgets/footer_widget.dart';
-import '../../../../core/widgets/header_widget.dart';
-import '../widgets/contact_form_widget.dart';
+import '../../../../core/helpers/launcher_helper.dart';
+import '../widgets/public_body_widget.dart';
 import '../widgets/public_menu_drawer_widget.dart';
+import '../widgets/public_title_sub_pages_widget.dart';
 
 class ContactPage extends StatelessWidget {
   const ContactPage({super.key});
@@ -13,101 +12,199 @@ class ContactPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: const PublicMenuDrawerWidget(),
-        body: SingleChildScrollView(
-            child: Column(children: [
-          const HeaderWidget(),
-          const SizedBox(height: 16),
-          Row(
+      drawer: const PublicMenuDrawerWidget(),
+      body: PublicBodyWidget(
+        children: [
+          const SizedBox(height: 50),
+          const PublicTitleSubPagesWidget(
+            title: 'FALE CONOSCO',
+            description:
+                'Disponibilizamos nossos canais de atendimento para que você possa enviar elogios, reclamações, dúvidas.',
+          ),
+          const SizedBox(height: 35),
+          _ContactFormWidget(),
+          const SizedBox(height: 30),
+          SizedBox(
+            width: 900,
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 8,
+              runSpacing: 8,
+              children: const [
+                _ContactCardWidget(
+                  title: 'Telefone',
+                  icon: FontAwesomeIcons.phone,
+                  iconColor: Colors.red,
+                  iconSize: 50,
+                  urlLauncher: 'tel:+5517992688736',
+                ),
+                SizedBox(height: 8),
+                _ContactCardWidget(
+                  title: 'WhatsApp',
+                  icon: FontAwesomeIcons.whatsapp,
+                  iconColor: Colors.green,
+                  urlLauncher: 'https://wa.me/5517992688736?text=Tenho%20interesse%20em%20comprar',
+                ),
+                SizedBox(height: 8),
+                _ContactCardWidget(
+                  title: 'Email',
+                  icon: Icons.email_outlined,
+                  urlLauncher: 'mailto:kakoServFestas@gmail.com',
+                ),
+                SizedBox(height: 8),
+                _ContactCardWidget(
+                  title: 'Facebook',
+                  icon: FontAwesomeIcons.squareFacebook,
+                  iconColor: Colors.blueAccent,
+                  urlLauncher: 'https://www.facebook.com/people/Kako-Serv-Festas/100083009268624/',
+                ),
+                SizedBox(height: 8),
+                _ContactCardWidget(
+                  title: 'Instagram',
+                  icon: FontAwesomeIcons.instagram,
+                  iconColor: Colors.pinkAccent,
+                  urlLauncher: 'http://instagram.com',
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 80),
+        ],
+      ),
+    );
+  }
+}
+
+class _ContactFormWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Card(
+          child: Column(
             children: [
-              const Expanded(flex: 9, child: ContactFormWidget()),
-              Expanded(
-                flex: 3,
-                child: Column(
-                  children: [
-                    Card(
-                      elevation: 8,
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Column(children: [
-                          IconButton(
-                            onPressed: () => LauncherHelper.url('tel:+5517992688736'),
-                            icon: const Icon(FontAwesomeIcons.phone, color: Colors.red),
+              SizedBox(
+                width: 800,
+                child: Padding(
+                  padding: const EdgeInsets.all(25),
+                  child: Form(
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 6,
+                              child: TextFormField(
+                                strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
+                                decoration: const InputDecoration(
+                                  labelText: 'Nome',
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 6,
+                              child: TextFormField(
+                                strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
+                                decoration: const InputDecoration(
+                                  labelText: 'Telefone',
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 6,
+                              child: TextFormField(
+                                strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
+                                decoration: const InputDecoration(
+                                  labelText: 'E-mail',
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 6,
+                              child: TextFormField(
+                                strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
+                                decoration: const InputDecoration(
+                                  labelText: 'Assunto', //inserir barra de rolagem com opções
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.multiline,
+                          maxLines: 3,
+                          strutStyle: const StrutStyle(height: 1.6, forceStrutHeight: true),
+                          decoration: const InputDecoration(
+                            labelText: 'Digite sua mensagem:',
                           ),
-                          const Text("TELEFONE", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                          const Text("(11) 4258-8855", style: TextStyle(fontSize: 12)),
-                        ]),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Card(
-                      elevation: 8,
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Column(children: [
-                          IconButton(
-                            onPressed: () =>
-                                LauncherHelper.url('https://wa.me/5517992688736?text=Tenho%20interesse%20em%20comprar'),
-                            icon: const Icon(FontAwesomeIcons.whatsapp, color: Colors.green),
+                        ),
+                        const SizedBox(height: 25),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
+                          onPressed: () {},
+                          child: const Text(
+                            'ENVIAR MENSAGEM',
+                            style: TextStyle(color: Colors.black),
                           ),
-                          const Text("WHATSAPP", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                          const Text("(11) 99547-8855", style: TextStyle(fontSize: 12)),
-                        ]),
-                      ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 8),
-                    Card(
-                      elevation: 8,
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Column(children: [
-                          IconButton(
-                            onPressed: () =>
-                                LauncherHelper.url('mailto:kakoServFestas@gmail.com?subject=News&body=New%20plugin'),
-                            icon: const Icon(Icons.email_outlined, color: Colors.black),
-                          ),
-                          const Text("E-MAIL", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                          const Text("kakoServFestas@gmail.com", style: TextStyle(fontSize: 12)),
-                        ]),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Card(
-                      elevation: 8,
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Column(children: [
-                          IconButton(
-                              onPressed: () => LauncherHelper.url(
-                                  'https://www.facebook.com/people/Kako-Serv-Festas/100083009268624/'),
-                              icon: const Icon(FontAwesomeIcons.squareFacebook, color: Colors.blueAccent)),
-                          const Text("FACEBOOK", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                          const Text("kakoServFestas@gmail.com", style: TextStyle(fontSize: 12)),
-                        ]),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Card(
-                      elevation: 8,
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Column(children: [
-                          IconButton(
-                            onPressed: () => LauncherHelper.url('http://instagram.com'),
-                            icon: const Icon(FontAwesomeIcons.instagram, color: Colors.pinkAccent),
-                          ),
-                          const Text("INSTAGRAN", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                          const Text("kakoServFestas@gmail.com", style: TextStyle(fontSize: 12)),
-                        ]),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 80),
-          const FooterWidget(),
-        ])));
+        ),
+      ],
+    );
+  }
+}
+
+class _ContactCardWidget extends StatelessWidget {
+  const _ContactCardWidget({
+    required this.title,
+    required this.icon,
+    required this.urlLauncher,
+    this.iconColor,
+    this.iconSize,
+  });
+
+  final String title;
+  final IconData icon;
+  final String urlLauncher;
+  final double? iconSize;
+  final Color? iconColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => LauncherHelper.url(urlLauncher),
+      child: Card(
+        elevation: 8,
+        child: SizedBox(
+          width: 100,
+          height: 110,
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(children: [
+              Icon(
+                icon,
+                color: iconColor ?? Colors.black,
+                size: iconSize ?? 60,
+              ),
+              const Spacer(),
+              Text(
+                title,
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              ),
+            ]),
+          ),
+        ),
+      ),
+    );
   }
 }

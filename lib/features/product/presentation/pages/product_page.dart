@@ -41,7 +41,7 @@ class ProductPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               child: Obx(
                 () => _controller.isLoading.value
-                    ? const LoadingWidget()
+                    ? const LoadingWidget(title: 'Carregando Produtos...')
                     : _controller.products.isEmpty
                         ? const Center(child: Text('Nenhum produto cadastrado'))
                         : ListView.builder(

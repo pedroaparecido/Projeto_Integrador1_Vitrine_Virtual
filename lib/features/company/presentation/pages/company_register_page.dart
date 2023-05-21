@@ -20,7 +20,7 @@ class CompanyRegisterPage extends StatelessWidget {
       drawer: const AdminMenuDrawerWidget(),
       body: Obx(
         () => _controller.isLoading.value
-            ? const LoadingWidget()
+            ? const LoadingWidget(title: 'Carregando Empresa...')
             : SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,

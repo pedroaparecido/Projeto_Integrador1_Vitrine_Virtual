@@ -14,7 +14,7 @@ class BannerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => _controller.isLoading.value
-          ? const LoadingWidget()
+          ? const LoadingWidget(title: 'Carregando Banners...')
           : _controller.isError || _controller.banners.isEmpty
               ? Container()
               : CarouselSlider(

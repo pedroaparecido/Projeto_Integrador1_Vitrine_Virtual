@@ -29,7 +29,7 @@ class ProductCategoryDropdownWidget extends StatelessWidget {
       () => _controller.isLoading.value
           ? Column(
               children: const [
-                LoadingWidget(),
+                LoadingWidget(title: 'Carregando Categorias...'),
                 Text('Buscando categorias...'),
               ],
             )
@@ -62,21 +62,6 @@ class ProductCategoryDropdownWidget extends StatelessWidget {
                     hintStyle: const TextStyle(color: Colors.grey),
                   ),
                 ),
-      // : FormDropdownFieldWidget<StoreEssentialEntity>(
-      //     labelText: labelText,
-      //     isRequired: isRequired,
-      //     initialValue: initialValue == null ? null : storeDropdownController.getStoreSelected(initialValue!),
-      //     items: storeDropdownController.stores
-      //         .map(
-      //           (res) => DropdownMenuItem<StoreEssentialEntity>(
-      //             value: res,
-      //             child: FittedBox(fit: BoxFit.fitWidth, child: Text(res.name)),
-      //           ),
-      //         )
-      //         .toList(),
-      //     onChanged: onChanged,
-      //     onSaved: onSaved,
-      //   ),
     );
   }
 }

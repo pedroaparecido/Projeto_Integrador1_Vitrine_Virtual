@@ -1,3 +1,5 @@
+import 'package:dartz/dartz.dart';
+
 import '../../../../core/services/graphql_service.dart';
 import '../../domain/entities/product_entity.dart';
 import '../model/product_gql_model.dart';
@@ -8,6 +10,7 @@ abstract class ProductDataSource {
   Future<ProductEntity> update({required ProductEntity product});
   Future<bool> delete(int id);
   Future<List<ProductEntity>> getAll();
+  Future<List<ProductEntity>> getByCategory(int idCategory);
 }
 
 class ProductDataSourceImpl implements ProductDataSource {
@@ -26,6 +29,13 @@ class ProductDataSourceImpl implements ProductDataSource {
   @override
   Future<List<ProductEntity>> getAll() async {
     final res = await _graphqlService.queryGql(query: ProductGqlModel.get());
+
+    return ProductModel.fromListMap(res['product']);
+  }
+
+  @override
+  Future<List<ProductEntity>> getByCategory(int idCategory) async {
+    final res = await _graphqlService.queryGql(query: ProductGqlModel.get(idCategory: idCategory));
 
     return ProductModel.fromListMap(res['product']);
   }

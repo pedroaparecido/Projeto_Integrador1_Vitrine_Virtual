@@ -7,4 +7,5 @@ abstract class ProductRepository {
   Future<Either<Exception, ProductEntity>> update({required ProductEntity product});
   Future<bool> delete(int id);
   Future<Either<Exception, List<ProductEntity>>> getAll();
+  Future<Either<Exception, List<ProductEntity>>> getByCategory(int idCategory);
 }

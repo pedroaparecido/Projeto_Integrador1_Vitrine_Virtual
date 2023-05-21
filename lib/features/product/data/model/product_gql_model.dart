@@ -15,10 +15,18 @@ class ProductGqlModel {
             price
             image''';
 
-  static String get() => '''query {
-          product {
+  static String get({int? idCategory}) {
+    final whereByCategory = idCategory != null ? 'where: {product_category_id: {_eq: $idCategory}},' : '';
+
+    return '''query {
+          product(
+          $whereByCategory 
+          order_by: {id: desc}
+          ){
             $productQuery
-          }}''';
+          }
+        }''';
+  }
 
   String insert(ProductEntity product) => '''mutation {
   insert_product(

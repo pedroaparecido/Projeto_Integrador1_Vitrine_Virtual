@@ -20,7 +20,6 @@ class HomePage extends StatelessWidget {
       body: PublicBodyWidget(children: [
         const SizedBox(height: 30),
         BannerWidget(),
-        const ProductCategoryButtonsWidget(),
         ProductDisplayHomeWidget(),
       ]),
     );

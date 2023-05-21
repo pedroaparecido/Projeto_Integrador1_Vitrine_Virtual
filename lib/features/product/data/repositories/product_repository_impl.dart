@@ -15,7 +15,7 @@ class ProductRepositoryImpl implements ProductRepository {
       final res = await _dataSource.getAll();
       return Right(res);
     } catch (err) {
-      return Left(Exception('Não foi possivel buscar os produtos\nERRO: $err'));
+      return Left(Exception('Não foi possível buscar os produtos\nERRO: $err'));
     }
   }
 
@@ -25,7 +25,7 @@ class ProductRepositoryImpl implements ProductRepository {
       final res = await _dataSource.insert(product: product);
       return Right(res);
     } catch (err) {
-      return Left(Exception('Não foi possivel inserir o produto\nERRO: $err'));
+      return Left(Exception('Não foi possível inserir o produto\nERRO: $err'));
     }
   }
 
@@ -35,7 +35,7 @@ class ProductRepositoryImpl implements ProductRepository {
       final res = await _dataSource.insert(product: product);
       return Right(res);
     } catch (err) {
-      return Left(Exception('Não foi possivel atualizar o produto\nERRO: $err'));
+      return Left(Exception('Não foi possível atualizar o produto\nERRO: $err'));
     }
   }
 
@@ -43,5 +43,15 @@ class ProductRepositoryImpl implements ProductRepository {
   Future<bool> delete(int id) async {
     final res = await _dataSource.delete(id);
     return res;
+  }
+
+  @override
+  Future<Either<Exception, List<ProductEntity>>> getByCategory(int idCategory) async {
+    try {
+      final res = await _dataSource.getByCategory(idCategory);
+      return Right(res);
+    } catch (err) {
+      return Left(Exception('Não foi possível buscar os produtos por categoria\nERRO: $err'));
+    }
   }
 }

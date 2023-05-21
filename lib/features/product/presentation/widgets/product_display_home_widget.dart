@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vitrine_virtual/core/helpers/regularize_helper.dart';
 import 'package:vitrine_virtual/core/widgets/loading_widget.dart';
 
+import 'product_category_dropdown_widget.dart';
 import 'product_detail_widget.dart';
 import '../controllers/product_controller.dart';
 import 'product_display_card_widget.dart';
@@ -28,40 +29,121 @@ class ProductDisplayHomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => _controller.isLoading.value
-          ? const LoadingWidget()
-          : _controller.products.isEmpty
-              ? const Center(child: Text('Nenhum produto cadastrado'))
-              : Container(
-                  width: 1300,
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                  child: Center(
-                    child: Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      alignment: WrapAlignment.center,
-                      children: _controller.products
-                          .map(
-                            (product) => SizedBox(
-                              width: _getCrossAxisCount(context),
-                              child: InkWell(
-                                child: ProductDisplayCardWidget(
-                                  nameProduct: product.name,
-                                  priceProduct: RegularizeHelper.doubleToRealCurrency(value: product.price),
-                                  image: product.image,
-                                ),
-                                onTap: () => Get.dialog(
-                                  Center(child: ProductDetailWidget(product: product)),
-                                  barrierDismissible: true,
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Container(
+          width: 1300,
+          padding: const EdgeInsets.symmetric(vertical: 15),
+          child: Column(
+            children: [
+              SizedBox(
+                width: double.infinity,
+                child: Card(
+                  elevation: 6,
+                  color: Colors.blue,
+                  child: Wrap(
+                    alignment: WrapAlignment.spaceAround,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Colors.orange[100],
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          width: 450,
+                          child: Column(
+                            children: [
+                              const Text(
+                                'Filtrar por Categoria',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
                                 ),
                               ),
+                              ProductCategoryDropdownWidget(
+                                isRequired: false,
+                                labelText: 'Selecione',
+                                onChanged: (value) => _controller.getByCategory(value!.id!),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Text(
+                            'QUALIDADE EM PRIMEIRO LUGAR!',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 28,
+                              shadows: [
+                                Shadow(
+                                  color: Colors.black.withOpacity(0.5), // Cor da sombra com transparência
+                                  offset: const Offset(0, 2), // Deslocamento da sombra (horizontal, vertical)
+                                  blurRadius: 5, // Desfoque da sombra
+                                ),
+                              ],
                             ),
-                          )
-                          .toList(),
-                    ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+              ),
+              Obx(
+                () => _controller.products.isEmpty
+                    ? Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        height: 350,
+                        child: Center(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              Icon(Icons.warning_amber_rounded, size: 80),
+                              Text('Opss... Nenhum produto encontrado'),
+                            ],
+                          ),
+                        ))
+                    : Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        alignment: WrapAlignment.center,
+                        children: _controller.products
+                            .map(
+                              (product) => SizedBox(
+                                width: _getCrossAxisCount(context),
+                                child: InkWell(
+                                  child: ProductDisplayCardWidget(
+                                    nameProduct: product.name,
+                                    priceProduct: RegularizeHelper.doubleToRealCurrency(value: product.price),
+                                    image: product.image,
+                                  ),
+                                  onTap: () => Get.dialog(
+                                    Center(child: ProductDetailWidget(product: product)),
+                                    barrierDismissible: true,
+                                  ),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      ),
+              ),
+            ],
+          ),
+        ),
+        Obx(
+          () => _controller.isLoading.value ? const LoadingWidget(title: 'Carregando Produtos...') : Container(),
+        ),
+      ],
     );
   }
 }

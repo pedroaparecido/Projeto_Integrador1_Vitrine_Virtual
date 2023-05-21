@@ -66,8 +66,9 @@ class ProductDisplayHomeWidget extends StatelessWidget {
                                 ),
                               ),
                               ProductCategoryDropdownWidget(
-                                isRequired: false,
                                 labelText: 'Selecione',
+                                addAllCategory: true,
+                                isRequired: false,
                                 onChanged: (value) => _controller.getByCategory(value!.id!),
                               ),
                             ],

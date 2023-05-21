@@ -16,7 +16,8 @@ class ProductGqlModel {
             image''';
 
   static String get({int? idCategory}) {
-    final whereByCategory = idCategory != null ? 'where: {product_category_id: {_eq: $idCategory}},' : '';
+    final whereByCategory =
+        idCategory != null && idCategory != 999 ? 'where: {product_category_id: {_eq: $idCategory}},' : '';
 
     return '''query {
           product(

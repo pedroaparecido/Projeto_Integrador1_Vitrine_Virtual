@@ -7,6 +7,7 @@ import '../controllers/product_category_dropdown_controller.dart';
 
 class ProductCategoryDropdownWidget extends StatelessWidget {
   final String? labelText;
+  final bool addAllCategory;
   final bool isRequired;
   final ProductCategoryEntity? initialValue;
   final void Function(ProductCategoryEntity? value)? onSaved;
@@ -15,6 +16,7 @@ class ProductCategoryDropdownWidget extends StatelessWidget {
   ProductCategoryDropdownWidget({
     Key? key,
     this.labelText,
+    this.addAllCategory = false,
     this.isRequired = true,
     this.initialValue,
     this.onSaved,
@@ -36,14 +38,19 @@ class ProductCategoryDropdownWidget extends StatelessWidget {
           : _controller.productCategories.isEmpty
               ? const Text('Cadastrar categoria antes do Produto')
               : DropdownButtonFormField<ProductCategoryEntity>(
-                  items: _controller.productCategories
-                      .map(
-                        (res) => DropdownMenuItem<ProductCategoryEntity>(
-                          value: res,
-                          child: FittedBox(fit: BoxFit.fitWidth, child: Text(res.name)),
-                        ),
-                      )
-                      .toList(),
+                  items: [
+                    if (addAllCategory)
+                      DropdownMenuItem<ProductCategoryEntity>(
+                        value: ProductCategoryEntity(id: 999, name: 'Todas'),
+                        child: const FittedBox(fit: BoxFit.fitWidth, child: Text('Todas')),
+                      ),
+                    ..._controller.productCategories.map(
+                      (res) => DropdownMenuItem<ProductCategoryEntity>(
+                        value: res,
+                        child: FittedBox(fit: BoxFit.fitWidth, child: Text(res.name)),
+                      ),
+                    )
+                  ],
                   value: initialValue,
                   onSaved: onSaved,
                   onChanged: onChanged,

@@ -18,7 +18,7 @@ class HeaderWidget extends StatelessWidget {
             color: Colors.black.withOpacity(0.5),
             spreadRadius: 3,
             blurRadius: 6,
-            offset: const Offset(1, 4), // changes position of shadow
+            offset: const Offset(1, 4),
           ),
         ],
       ),
@@ -33,10 +33,10 @@ class HeaderWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.white.withOpacity(0.5), // Cor da sombra branca com transparência
-                      spreadRadius: 4, // Espalhamento da sombra
-                      blurRadius: 2, // Desfoque da sombra
-                      offset: const Offset(0, 2), // Deslocamento da sombra (horizontal, vertical)
+                      color: Colors.white.withOpacity(0.5),
+                      spreadRadius: 4,
+                      blurRadius: 2,
+                      offset: const Offset(0, 2),
                     ),
                   ],
                 ),
@@ -46,7 +46,7 @@ class HeaderWidget extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            MediaQuery.of(context).size.width < 450
+            MediaQuery.of(context).size.width <= 600
                 ? IconButton(
                     onPressed: () => Scaffold.of(context).openDrawer(),
                     icon: const Icon(

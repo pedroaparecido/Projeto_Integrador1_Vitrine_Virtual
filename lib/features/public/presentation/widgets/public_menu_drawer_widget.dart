@@ -10,22 +10,43 @@ class PublicMenuDrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Colors.black,
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.black,
-            ),
-            child: Text(
-              'Menu',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
+          const SizedBox(height: 30),
+          Padding(
+            padding: const EdgeInsets.all(30),
+            child: ClipOval(
+              child: Container(
+                margin: const EdgeInsets.all(3),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white.withOpacity(0.5),
+                      spreadRadius: 4,
+                      blurRadius: 2,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Image.asset(
+                  'assets/images/logo.png',
+                ),
               ),
             ),
           ),
-          ...menuListButtons,
+          Divider(
+            color: Colors.white.withOpacity(0.8),
+            thickness: 4,
+          ),
+          const SizedBox(height: 35),
+          ...menuListButtons.map(
+            (e) => Padding(
+              padding: const EdgeInsets.only(bottom: 25),
+              child: e,
+            ),
+          )
         ],
       ),
     );

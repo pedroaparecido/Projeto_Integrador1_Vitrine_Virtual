@@ -46,53 +46,49 @@ class ProductDisplayHomeWidget extends StatelessWidget {
                     alignment: WrapAlignment.spaceAround,
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.all(20),
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: Colors.orange[100],
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          width: 450,
-                          child: Column(
-                            children: [
-                              const Text(
-                                'Filtrar por Categoria',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16,
-                                ),
+                      Container(
+                        margin: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.orange[100],
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        width: 450,
+                        child: Column(
+                          children: [
+                            const Text(
+                              'Filtrar por Categoria',
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
                               ),
-                              ProductCategoryDropdownWidget(
-                                labelText: 'Selecione',
-                                addAllCategory: true,
-                                isRequired: false,
-                                onChanged: (value) => _controller.getByCategory(value!.id!),
-                              ),
-                            ],
-                          ),
+                            ),
+                            ProductCategoryDropdownWidget(
+                              labelText: 'Selecione',
+                              addAllCategory: true,
+                              isRequired: false,
+                              onChanged: (value) => _controller.getByCategory(value!.id!),
+                            ),
+                          ],
                         ),
                       ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Text(
-                            'QUALIDADE EM PRIMEIRO LUGAR!',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 28,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.black.withOpacity(0.5), // Cor da sombra com transparência
-                                  offset: const Offset(0, 2), // Deslocamento da sombra (horizontal, vertical)
-                                  blurRadius: 5, // Desfoque da sombra
-                                ),
-                              ],
-                            ),
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Text(
+                          'QUALIDADE EM PRIMEIRO LUGAR!',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 28,
+                            shadows: [
+                              Shadow(
+                                color: Colors.black.withOpacity(0.5), // Cor da sombra com transparência
+                                offset: const Offset(0, 2), // Deslocamento da sombra (horizontal, vertical)
+                                blurRadius: 5, // Desfoque da sombra
+                              ),
+                            ],
                           ),
                         ),
                       ),

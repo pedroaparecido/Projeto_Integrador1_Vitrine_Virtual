@@ -1,5 +1,3 @@
-import 'package:dartz/dartz.dart';
-
 import '../../../../core/services/graphql_service.dart';
 import '../../domain/entities/product_entity.dart';
 import '../model/product_gql_model.dart';

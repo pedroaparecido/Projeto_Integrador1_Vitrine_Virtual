@@ -12,7 +12,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.grey[200],
       body: Center(
         child: SingleChildScrollView(
           child: Container(
@@ -53,7 +53,7 @@ class LoginPage extends StatelessWidget {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black12,
+                        backgroundColor: Colors.green[900],
                       ),
                       child: const Text('Login'))
                 ],

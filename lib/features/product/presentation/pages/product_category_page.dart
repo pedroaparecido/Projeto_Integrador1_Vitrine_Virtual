@@ -79,7 +79,7 @@ class ProductCategoryPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const FooterWidget(),
+              FooterWidget(),
             ],
           ),
         ),

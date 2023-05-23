@@ -20,7 +20,7 @@ class PublicBodyWidget extends StatelessWidget {
           children: [
             const HeaderWidget(),
             ...children,
-            const FooterWidget(),
+            FooterWidget(),
           ],
         ),
       ),

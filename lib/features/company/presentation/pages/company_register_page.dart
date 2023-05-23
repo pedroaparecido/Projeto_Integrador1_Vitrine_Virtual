@@ -210,7 +210,7 @@ class CompanyRegisterPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const FooterWidget(),
+                    FooterWidget(),
                   ],
                 ),
               ),

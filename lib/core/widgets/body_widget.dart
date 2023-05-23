@@ -30,7 +30,7 @@ class BodyWidget extends StatelessWidget {
               children: children,
             ),
           ),
-          const FooterWidget()
+          FooterWidget()
         ],
       ),
     );

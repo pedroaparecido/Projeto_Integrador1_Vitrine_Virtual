@@ -77,7 +77,7 @@ class BannersPage extends StatelessWidget {
                                 })),
                   )),
             ),
-            const FooterWidget(),
+            FooterWidget(),
           ],
         ),
       ),

@@ -32,6 +32,16 @@ class ProductController extends GetxController {
     super.onInit();
   }
 
+  void _resetForm() {
+    formKey.currentState!.reset();
+    imageFileSelected = null;
+  }
+
+  void cancelInsert() {
+    _resetForm();
+    Get.back();
+  }
+
   Future<void> getLocalImage() async {
     isLoading.value = true;
 
@@ -68,6 +78,7 @@ class ProductController extends GetxController {
       (l) => DialogWidget.feedback(result: false, message: l.toString()),
       (r) {
         products.add(r);
+        _resetForm();
         Get.back();
       },
     );
@@ -111,7 +122,7 @@ class ProductController extends GetxController {
     if (res) {
       isLoading.value = false;
       products.removeWhere((element) => element.id == id);
-      DialogWidget.feedback(result: true, message: 'Produto deletada com sucesso');
+      DialogWidget.feedback(result: true, message: 'Produto deletado com sucesso');
     } else {
       isLoading.value = false;
       DialogWidget.feedback(result: false, message: 'Erro ao deletar produto');

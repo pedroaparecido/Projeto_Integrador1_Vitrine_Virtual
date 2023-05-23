@@ -7,7 +7,6 @@ import 'features/auth/presentation/pages/login_page.dart';
 import 'features/banners/presentation/pages/banners_page.dart';
 import 'features/company/presentation/pages/company_register_page.dart';
 import 'features/product/presentation/pages/product_category_page.dart';
-import 'features/product/presentation/pages/product_detail_page.dart';
 import 'features/product/presentation/pages/product_page.dart';
 import 'features/public/presentation/pages/about_page.dart';
 import 'features/public/presentation/pages/contact_page.dart';
@@ -36,7 +35,6 @@ class MyApp extends StatelessWidget {
         GetPage(name: RouteConfig.about, page: () => const AboutPage()),
         GetPage(name: RouteConfig.contact, page: () => ContactPage()),
         GetPage(name: RouteConfig.companyRegister, page: () => CompanyRegisterPage()),
-        GetPage(name: RouteConfig.productDetail, page: () => const ProductDetailPage()),
         GetPage(name: RouteConfig.product, page: () => ProductPage()),
         GetPage(name: RouteConfig.images, page: () => BannersPage()),
         GetPage(name: RouteConfig.productCategory, page: () => ProductCategoryPage()),

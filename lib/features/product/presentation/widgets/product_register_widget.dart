@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'product_category_dropdown_widget.dart';
 
 import '../controllers/product_controller.dart';
+import 'product_category_dropdown_widget.dart';
 
 class ProductRegisterWidget extends StatelessWidget {
   ProductRegisterWidget({super.key});
@@ -41,7 +41,7 @@ class ProductRegisterWidget extends StatelessWidget {
                                     height: 180.0,
                                     width: 250,
                                   )
-                                : Image.memory(_controller.imageFileSelected!),
+                                : Image.memory(_controller.imageFileSelected!, height: 250),
                       ),
                       const SizedBox(height: 10),
                       ElevatedButton(
@@ -82,7 +82,7 @@ class ProductRegisterWidget extends StatelessWidget {
                           Expanded(
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                              onPressed: Get.back,
+                              onPressed: _controller.cancelInsert,
                               child: const Text(
                                 'Cancelar',
                                 style: TextStyle(color: Colors.black),

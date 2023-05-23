@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../widgets/admin_menu_drawer_widget.dart';
 
-class Adminpage extends StatelessWidget {
-  const Adminpage({super.key});
+class AdminPage extends StatelessWidget {
+  const AdminPage({super.key});
 
   @override
   Widget build(BuildContext context) {

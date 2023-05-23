@@ -14,7 +14,7 @@ class LoadingWidget extends StatelessWidget {
       elevation: 12,
       child: SizedBox(
           width: 300,
-          // height: 300,
+          // height: 150,
           child: Column(
             children: [
               // const SizedBox(height: 8),

@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: RouteConfig.product, page: () => ProductPage()),
         GetPage(name: RouteConfig.images, page: () => BannersPage()),
         GetPage(name: RouteConfig.productCategory, page: () => ProductCategoryPage()),
-        GetPage(name: RouteConfig.adminPage, page: () => const Adminpage()),
+        GetPage(name: RouteConfig.adminPage, page: () => const AdminPage()),
         GetPage(name: RouteConfig.login, page: () => LoginPage()),
       ],
     );

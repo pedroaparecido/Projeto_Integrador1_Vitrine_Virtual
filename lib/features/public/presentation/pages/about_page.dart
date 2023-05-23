@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../company/presentation/controllers/company_public_controller.dart';
 import '../widgets/public_body_widget.dart';
 import '../widgets/public_menu_drawer_widget.dart';
 import '../widgets/public_title_sub_pages_widget.dart';
@@ -31,125 +33,144 @@ class AboutPage extends StatelessWidget {
 }
 
 class _AboutMissionVisionValueWidget extends StatelessWidget {
-  const _AboutMissionVisionValueWidget({required double screenWidth}) : _screenWidth = screenWidth;
+  _AboutMissionVisionValueWidget({required double screenWidth}) : _screenWidth = screenWidth;
+
+  final _companyController = Get.find<CompanyPublicController>();
 
   final double _screenWidth;
 
   @override
   Widget build(BuildContext context) {
-    return _screenWidth > 750
-        ? Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Column(
+    return _companyController.isLoading.value
+        ? Container()
+        : _screenWidth > 750
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Image.asset(
-                    'assets/images/missao1.png',
-                    height: 100,
-                    width: 100,
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          'assets/images/missao1.png',
+                          height: 100,
+                          width: 100,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 50),
+                          child: Text('NOSSA MISSÃO', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 15, bottom: 50, left: 16, right: 16),
+                          child: Text(_companyController.company.missao,
+                              textAlign: TextAlign.center, style: const TextStyle(fontSize: 18)),
+                        ),
+                      ],
+                    ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 50),
-                    child: Text('NOSSA MISSÃO', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          'assets/images/visao.png',
+                          height: 100,
+                          width: 100,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 50),
+                          child: Text('NOSSA VISÃO', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 15, bottom: 50, left: 16, right: 16),
+                          child: Text(_companyController.company.visao,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 18,
+                              )),
+                        ),
+                      ],
+                    ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 15, bottom: 50),
-                    child: Text('Vender produtos de qualidade', style: TextStyle(fontSize: 18)),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          'assets/images/value.png',
+                          height: 100,
+                          width: 100,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 50),
+                          child: Text('NOSSOS VALORES', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 15, bottom: 50, left: 16, right: 16),
+                          child: Text(_companyController.company.valores,
+                              textAlign: TextAlign.center, style: const TextStyle(fontSize: 18)),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
-              ),
-              Column(
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Image.asset(
-                    'assets/images/visao.png',
-                    height: 100,
-                    width: 100,
+                  Column(
+                    children: [
+                      Image.asset(
+                        'assets/images/missao1.png',
+                        height: 100,
+                        width: 100,
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 50),
+                        child: Text('NOSSA MISSÃO', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15, bottom: 50, left: 16, right: 16),
+                        child: Text(_companyController.company.missao,
+                            textAlign: TextAlign.center, style: const TextStyle(fontSize: 18)),
+                      ),
+                    ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 50),
-                    child: Text('NOSSA VISÃO', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
+                  Column(
+                    children: [
+                      Image.asset(
+                        'assets/images/visao.png',
+                        height: 100,
+                        width: 100,
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 50),
+                        child: Text('NOSSA VISÃO', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15, bottom: 50, left: 16, right: 16),
+                        child: Text(_companyController.company.visao,
+                            textAlign: TextAlign.center, style: const TextStyle(fontSize: 18)),
+                      ),
+                    ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 15, bottom: 50),
-                    child: Text('Crescer,desenvolver,expandir', style: TextStyle(fontSize: 18)),
+                  Column(
+                    children: [
+                      Image.asset(
+                        'assets/images/value.png',
+                        height: 100,
+                        width: 100,
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 50),
+                        child: Text('NOSSOS VALORES', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15, bottom: 50, left: 16, right: 16),
+                        child: Text(_companyController.company.valores,
+                            textAlign: TextAlign.center, style: const TextStyle(fontSize: 18)),
+                      ),
+                    ],
                   ),
                 ],
-              ),
-              Column(
-                children: [
-                  Image.asset(
-                    'assets/images/value.png',
-                    height: 100,
-                    width: 100,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 50),
-                    child: Text('NOSSOS VALORES', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 15, bottom: 50),
-                    child: Text('XXXXXXXXXXXXXXXXXXX', style: TextStyle(fontSize: 18)),
-                  ),
-                ],
-              ),
-            ],
-          )
-        : Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Column(
-                children: [
-                  Image.asset(
-                    'assets/images/missao1.png',
-                    height: 100,
-                    width: 100,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 50),
-                    child: Text('NOSSA MISSÃO', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 15, bottom: 50),
-                    child: Text('Vender produtos de qualidade', style: TextStyle(fontSize: 18)),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Image.asset(
-                    'assets/images/visao.png',
-                    height: 100,
-                    width: 100,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 50),
-                    child: Text('NOSSA VISÃO', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 15, bottom: 50),
-                    child: Text('Crescer,desenvolver,expandir', style: TextStyle(fontSize: 18)),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Image.asset(
-                    'assets/images/value.png',
-                    height: 100,
-                    width: 100,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 50),
-                    child: Text('NOSSOS VALORES', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21)),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 15, bottom: 50),
-                    child: Text('XXXXXXXXXXXXXXXXXXX', style: TextStyle(fontSize: 18)),
-                  ),
-                ],
-              ),
-            ],
-          );
+              );
   }
 }
 
@@ -163,7 +184,6 @@ class _AboutDescriptionAndImageWidget extends StatelessWidget {
     return _screenWidth > 750
         ? Container(
             color: Colors.black45,
-            // height: 500,
             child: Row(
               children: [
                 Expanded(
@@ -183,7 +203,11 @@ class _AboutDescriptionAndImageWidget extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et ",
+                              'Somos uma empresa familiar, fundada há 1 ano em 09/05/2022. Visamos oferecer variedade e '
+                              'qualidade a nossos clientes, e sempre com o melhor preço da região. Oferecemos uma variedade '
+                              'de produtos, locação de utensílios para festa (mesas, cadeiras). Nosso foco sempre foi no '
+                              'cliente, e nossa proposta é chegar cada vez mais completo em suas festas, seja festas de família, '
+                              'empresarial, entre outros. Estamos sempre a disposição, entre em contato conosco.',
                               style: TextStyle(fontSize: 18, color: Colors.white),
                               textAlign: TextAlign.justify,
                             ),
@@ -219,7 +243,11 @@ class _AboutDescriptionAndImageWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et ",
+                        'Somos uma empresa familiar, fundada há 1 ano em 09/05/2022. Visamos oferecer variedade e '
+                        'qualidade a nossos clientes, e sempre com o melhor preço da região. Oferecemos uma variedade '
+                        'de produtos, locação de utensílios para festa (mesas, cadeiras). Nosso foco sempre foi no '
+                        'cliente, e nossa proposta é chegar cada vez mais completo em suas festas, seja festas de família, '
+                        'empresarial, entre outros. Estamos sempre a disposição, entre em contato conosco.',
                         style: TextStyle(fontSize: 18, color: Colors.white),
                         textAlign: TextAlign.justify,
                       ),

@@ -6,7 +6,7 @@ abstract class GraphqlService {
 }
 
 class GraphqlServiceImpl implements GraphqlService {
-  String urlBase = 'http://18.220.63.252:9001/v1/graphql';
+  String urlBase = 'http://totem-hasura.westus.azurecontainer.io/v1/graphql';
   static const _timeOut = Duration(seconds: 3);
 
   Future<HasuraConnect> _hasuraConnect() async {

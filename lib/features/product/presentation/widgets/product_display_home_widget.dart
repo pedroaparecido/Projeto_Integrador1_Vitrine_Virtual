@@ -102,10 +102,10 @@ class ProductDisplayHomeWidget extends StatelessWidget {
                     ? Container(
                         padding: const EdgeInsets.symmetric(horizontal: 30),
                         height: 350,
-                        child: Center(
+                        child: const Center(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
-                            children: const [
+                            children: [
                               Icon(Icons.warning_amber_rounded, size: 80),
                               Text('Opss... Nenhum produto encontrado'),
                             ],

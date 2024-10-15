@@ -29,8 +29,8 @@ class ProductCategoryDropdownWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => _controller.isLoading.value
-          ? Column(
-              children: const [
+          ? const Column(
+              children: [
                 LoadingWidget(title: 'Carregando Categorias...'),
                 Text('Buscando categorias...'),
               ],

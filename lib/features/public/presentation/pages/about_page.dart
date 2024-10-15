@@ -186,14 +186,14 @@ class _AboutDescriptionAndImageWidget extends StatelessWidget {
             color: Colors.black45,
             child: Row(
               children: [
-                Expanded(
+                const Expanded(
                     flex: 6,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 80, right: 20),
+                      padding: EdgeInsets.only(left: 80, right: 20),
                       child: SingleChildScrollView(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
@@ -230,11 +230,11 @@ class _AboutDescriptionAndImageWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(14),
+                const Padding(
+                  padding: EdgeInsets.all(14),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Text(
